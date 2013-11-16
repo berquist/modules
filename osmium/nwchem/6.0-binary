@@ -32,23 +32,20 @@ module-whatis "NWChem (http://www.nwchem-sw.org/index.php/Main_Page)"
 # ====================================================================
 
 # module commands
-#module-load-clean _runtime/intel-2011
-#module load openmpi/1.6.x-intel
-#module load mkl/2011.9/icc-st-openmpi-i8
-#module load python/2.7-gcc45
-module load openmpi/1.6.5-intel2013.0
 
 # conflicting modules 
 # if the directory name of a collection of modules is specified 
 # then conflict with any one in that collection
+
 conflict nwchem
+prereq openmpi
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(QCPROGS)/$modfile
+set root $::env(apps)/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
@@ -66,9 +63,11 @@ setenv MPIRUN_PATH       $::env(MPI_ROOT)/bin/mpirun
 # setenv NWCHEM_EXECUTABLE $NWCHEM_TOP/bin/${NWCHEM_TARGET}_${NWCHEM_TARGET_CPU}/nwchem
 # setenv PARALLEL_PATH     $NWCHEM_TOP/bin/${NWCHEM_TARGET}_${NWCHEM_TARGET_CPU}/parallel
 
-setenv NWCHEM_NWPW_LIBRARY  $root/usr.local.lib.nwchem/libraryps/
-setenv NWCHEM_BASIS_LIBRARY $root/usr.local.lib.nwchem/libraries/
+# setenv NWCHEM_NWPW_LIBRARY  $root/usr.local.lib.nwchem/libraryps/
+# setenv NWCHEM_BASIS_LIBRARY $root/usr.local.lib.nwchem/libraries/
 
+# system /bin/rm $root/etc/default.nwchemrc*
+# system $root/etc/gen_default.nwchemrc
 system /bin/ln -fs $root/etc/default.nwchemrc ~/.nwchemrc
 
 prepend-path PATH $root/bin
