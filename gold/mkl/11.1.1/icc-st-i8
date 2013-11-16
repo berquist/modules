@@ -47,14 +47,11 @@ set ldflags {\
                  -lmkl_sequential \
                  -lmkl_core \
                  -lpthread \
-                 -lm
+                 -lm \
              }
-
-
 
 prepend-path -d " " SAMWRAP_LDFLAGS "-L$lib $ldflags"
 prepend-path -d " " SAMWRAP_FLAGS "-I$root/include"
-
 
 prepend-path CMAKE_LIBRARY_PATH $lib
 prepend-path CMAKE_INCLUDE_PATH $root/include

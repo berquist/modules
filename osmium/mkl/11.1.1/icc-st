@@ -42,18 +42,15 @@ prepend-path MANPATH $root/../man/en_US
 prepend-path NLSPATH $lib/locale/en_US
 
 set ldflags {\
-                 -lmkl_intel_lp64 \
-                 -lmkl_sequential \
-                 -lmkl_core \
-                 -lpthread \
-                 -lm
-             }
-
-
+		 -lmkl_intel_lp64 \
+		 -lmkl_sequential \
+		 -lmkl_core \
+		 -lpthread \
+		 -lm \
+	     }
 
 prepend-path -d " " SAMWRAP_LDFLAGS "-L$lib $ldflags"
 prepend-path -d " " SAMWRAP_FLAGS "-I$root/include"
-
 
 prepend-path CMAKE_LIBRARY_PATH $lib
 prepend-path CMAKE_INCLUDE_PATH $root/include

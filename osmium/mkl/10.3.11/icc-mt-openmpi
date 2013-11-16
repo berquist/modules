@@ -55,14 +55,11 @@ set ldflags {\
                  -lmkl_core \
                  -lmkl_blacs_openmpi_lp64 \
                  -lpthread \
-                 -lm
+                 -lm \
              }
-
-
 
 prepend-path -d " " SAMWRAP_LDFLAGS "-openmp -L$lib $ldflags"
 prepend-path -d " " SAMWRAP_FLAGS "-openmp -I$root/include"
-
 
 prepend-path CMAKE_LIBRARY_PATH $lib
 prepend-path CMAKE_INCLUDE_PATH $root/include
