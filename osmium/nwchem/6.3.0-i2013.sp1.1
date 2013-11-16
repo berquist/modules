@@ -19,7 +19,7 @@
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 6.0
+set ver 6.3.0
 
 # ======================================================================
 # Documentation
@@ -51,17 +51,21 @@ set root $::env(apps)/$modfile
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
+setenv ARMCI_NETWORK  MPI-TS
 setenv LARGE_FILES    TRUE
 setenv TCGRSH         /usr/bin/ssh
-setenv NWCHEM_MODULES pnnl
+setenv NWCHEM_MODULES "all python"
 setenv USE_MPI        y
 setenv USE_MPIF       y
-setenv LIBMPI         -lmpi
+setenv USE_MPIF4      y
+setenv LIBMPI         "-lmpi_f90 -lmpi_f77 -lmpi -ldl -Wl,--export-dynamic -lnsl -lutil"
 setenv MPI_LIB        $::env(MPI_ROOT)/lib
 setenv MPI_INCLUDE    $::env(MPI_ROOT)/include
+setenv MRCC_THEORY    TRUE
 setenv PYTHONHOME     $::env(ANACONDA_ROOT)
 setenv PYTHONVERSION  2.7
 setenv USE_PYTHON64   y
+#setenv BLASOPT        ""
 
 setenv NWCHEM_ROOT $root
 setenv NWCHEM_HOME $root
