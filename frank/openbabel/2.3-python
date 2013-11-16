@@ -1,0 +1,71 @@
+#%Module
+
+# ======================================================================
+#  Load useful procedures and variables to be using in this modulefile 
+# ======================================================================
+
+# This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
+source  $env(MODULEPROCS)
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name 
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ] 
+set submods [ split "$modfile" / ]  
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "OpenBabel Open Source Chemistry Tool Box: $ver"
+
+proc ModulesHelp { } {
+    set genericname "OpenBabel"
+    set modfile [ module-info name ] 
+    puts stderr "$genericname - the $genericname package $modfile
+}
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+# module commands
+module load gcc/4.7.2
+module load openmpi/1.6.3-gcc47
+module load mkl/11.1.072/gcc-st
+module load boost/1.50.0-gcc45
+module load cmake
+module load eigen
+module load python/epd-7.3
+
+# conflicting modules 
+# if the directory name of a collection of modules is specified 
+# then conflict with any one in that collection
+conflict openbabel
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root /home/dlambrecht/erb74/repos/openbabel-build
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+setenv OPENBABEL_ROOT $root/bin
+prepend-path PATH $root/bin
+prepend-path LD_LIBRARY_PATH $root/lib
+prepend-path C_INCLUDE_PATH $root/include
+prepend-path CPLUS_INCLUDE_PATH $root/include
+prepend-path PKG_CONFIG_PATH $root/lib/pkgconfig
+#prepend-path PYTHONPATH

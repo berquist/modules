@@ -1,0 +1,77 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name 
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ] 
+set submods [ split "$modfile" / ]  
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 1.6.5
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "OpenMPI"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict openmpi
+
+# built with:
+# module purge
+# module load gcc/builtin/4.4.7
+# module load intel/2011.11
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root $::env(apps)/$modfile
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+setenv OPENMPI_VER $ver
+setenv OPENMPI_BASE $modfile_base
+
+setenv OPENMPI_ROOT $root
+setenv MPI_ROOT $root
+
+prepend-path PATH $root/bin
+prepend-path LD_LIBRARY_PATH $root/lib
+prepend-path MANPATH $root/share/man
+prepend-path CMAKE_PREFIX_PATH $root
+prepend-path CPATH $root/include
+
+# ====================================================================
+# Compiler wrapper modifications 
+# ====================================================================
+#
+# The compiler wrappers use the following variables
+# 
+prepend-path -d " " SAMWRAP_FLAGS      "-pthread -I$root/include"
+prepend-path -d " " SAMWRAP_CXX_FLAGS  "-fexceptions"
+prepend-path -d " " SAMWRAP_FC_FLAGS   "-I$root/lib"
+
+prepend-path -d " " SAMWRAP_LDFLAGS "-L$root/lib -lmpi -ldl -lnuma -Wl,--export-dynamic -lrt -lnsl -lutil -pthread"
+# -lopen-rte -lopen-pal -losmcomp -lrdmacm -libverbs -lsctp -lrt -lnsl -lutil -ltorque -ldl -lm -lnuma -lrt -lnsl -lutil
+
+prepend-path -d " " SAMWRAP_FC_LDFLAGS  "-lmpi_f90 -lmpi_f77"
+prepend-path -d " " SAMWRAP_CXX_LDFLAGS "-lmpi_cxx"
+
+# ======================================================================
+# PRUN flags
+# ======================================================================
+
+setenv SAMWRAP_PRUN "openmpi.default"

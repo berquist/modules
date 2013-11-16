@@ -1,0 +1,48 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 4.1
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Q-Chem 4"
+
+conflict qchem
+module rm intel mkl
+module load intel/2011
+module load mkl/2011/icc-st
+
+# dynamically linked against:
+# module load intel/2011.12
+# module load mkl/2011.12/icc-st
+# module load openmpi/1.4.4-intel12
+
+# source /opt/sam/qchem/trunk_2013-07-30/qcrc
+set root $::env(QCPROGS)/$modfile
+
+setenv QCSCRATCH     $::env(SCRATCH)/qchem
+setenv QCLOCALSCR    $::env(SCRATCH)/qchemlocal
+setenv QC            $root
+setenv QCAUX         $root/../../qcaux4
+setenv QC_EXT_LIBS   $root/../../qc_ext_libs
+#setenv QCPROG        $root/exe/qcprog.exe
+#setenv QCPROG_S      $root/exe/qcprog.exe
+setenv QCPARALLEL    true
+setenv P4_RSHCOMMAND ssh
+setenv QCRSH         ssh
+setenv QCPLATFORM    LINUX_Ix86_64
+
+prepend-path PATH    $root/bin

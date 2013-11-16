@@ -1,0 +1,89 @@
+#%Module
+
+# ======================================================================
+#  Load useful procedures and variables to be using in this modulefile 
+# ======================================================================
+
+# This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
+#source  $env(MODULEPROCS)
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name 
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ] 
+set submods [ split "$modfile" / ]  
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 6.1.1
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "NWChem (http://www.nwchem-sw.org/index.php/Main_Page)"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+# module commands
+#module-load-clean _runtime/intel-2011
+#module load openmpi/1.6.x-intel
+#module load mkl/2011.9/icc-st-openmpi-i8
+#module load python/2.7-gcc45
+module load intel/2013.0
+module load mkl/2013.0/icc-st
+module load python/anaconda
+module load openmpi/1.6.5-intel2013.0-i8
+
+# conflicting modules 
+# if the directory name of a collection of modules is specified 
+# then conflict with any one in that collection
+conflict nwchem
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root $::env(QCPROGS)/$modfile
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+setenv LARGE_FILES    TRUE
+setenv TCGRSH         /usr/bin/ssh
+setenv NWCHEM_MODULES pnnl
+setenv USE_MPI        y
+setenv USE_MPIF       y
+setenv LIBMPI         -lmpi
+setenv MPI_LIB        $::env(MPI_ROOT)/lib
+setenv MPI_INCLUDE    $::env(MPI_ROOT)/include
+setenv PYTHONHOME     $::env(ANACONDA_ROOT)
+setenv PYTHONVERSION  2.7
+setenv USE_PYTHON64   y
+
+setenv NWCHEM_ROOT $root
+setenv NWCHEM_HOME $root
+setenv NWCHEM_TOP  $root
+
+setenv NWCHEM_TARGET     LINUX64
+setenv NWCHEM_EXECUTABLE $root/bin/nwchem
+setenv PARALLEL_PATH     $root/bin/parallel
+setenv MPIRUN_PATH       $::env(MPI_ROOT)/bin/mpirun
+
+# setenv NWCHEM_EXECUTABLE $NWCHEM_TOP/bin/${NWCHEM_TARGET}_${NWCHEM_TARGET_CPU}/nwchem
+# setenv PARALLEL_PATH     $NWCHEM_TOP/bin/${NWCHEM_TARGET}_${NWCHEM_TARGET_CPU}/parallel
+
+setenv NWCHEM_NWPW_LIBRARY  $root/usr.local.lib.nwchem/libraryps/
+setenv NWCHEM_BASIS_LIBRARY $root/usr.local.lib.nwchem/libraries/
+
+system /bin/ln -fs $root/etc/default.nwchemrc ~/.nwchemrc
+
+prepend-path PATH $root/bin

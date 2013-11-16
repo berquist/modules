@@ -1,0 +1,45 @@
+#%Module1.0
+
+# ======================================================================
+#  Load useful procedures and variables to be using in this modulefile 
+# ======================================================================
+
+# This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
+source  $env(MODULEPROCS)
+
+warning  {
+    Make sure that the following modules are loaded!
+        intel/11.1.072
+        mkl/11.1.072/icc-st
+}
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 4.0
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Q-Chem 4"
+
+conflict qchem
+
+set root /home/dlambrecht/software/qchem4.release.O2
+
+setenv QCSCRATCH   $::env(SCRATCH)/qchem
+setenv QC          $root
+setenv QCAUX       $root/../qcaux4
+setenv QC_EXT_LIBS $root/../qc_ext_libs
+
+prepend-path PATH  $root/bin

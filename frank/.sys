@@ -1,0 +1,51 @@
+#%Module1.0
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Loads Frank compute node environment - Users need not load this module explicitly."
+
+module load modules
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root /opt/sam/sys
+set ericroot $::env(HOME)/opt
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+set inc $root/include
+set lib $root/lib:$root/lib64
+
+prepend-path PATH $root/bin
+prepend-path PATH $ericroot/bin
+
+prepend-path LD_LIBRARY_PATH $lib
+prepend-path LD_LIBRARY_PATH $ericroot/lib
+
+prepend-path LD_RUN_PATH $lib
+prepend-path LD_RUN_PATH $ericroot/lib
+
+prepend-path CMAKE_PREFIX_PATH $root
+prepend-path CMAKE_PREFIX_PATH $root/usr
+prepend-path CMAKE_PREFIX_PATH $ericroot
+
+# both C/C++ paths
+prepend-path CPATH              $inc
+#prepend-path CPATH              $ericroot/include
+
+# separately (if needed)
+#prepend-path C_INCLUDE_PATH     $inc
+#prepend-path CPLUS_INCLUDE_PATH $inc
+#prepend-path C_INCLUDE_PATH     $ericroot/include
+#prepend-path CPLUS_INCLUDE_PATH $ericroot/include
+
+# library path (for linkage)
+prepend-path LIBRARY_PATH       $lib
+prepend-path LIBRARY_PATH       $ericroot/lib

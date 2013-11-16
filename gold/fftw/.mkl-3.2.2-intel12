@@ -1,0 +1,52 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name 
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ] 
+set submods [ split "$modfile" / ]  
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "MKL wrappers for FFTW, fastest Fourier transform in the West, version $ver"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+module add _runtime/intel-2011.1
+conflict fftw
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+set root /opt/sam/intel/composerxe-2011.1.107/mkl
+
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+setenv FFTW_ROOT $root
+#prepend-path PATH $root/bin
+prepend-path LD_LIBRARY_PATH $root/lib/intel64
+prepend-path MANPATH $root/share/man
+
+
+# ====================================================================
+# Compiler wrapper modifications 
+# ====================================================================
+prepend-path -d " " SAMWRAP_FLAGS        "-I$root/include/fftw"
+prepend-path -d " " SAMWRAP_LDFLAGS      "-L$root/lib/intel64"
+# core intel libraries already contain FFTW3 wrappers: 
+# see  http://software.intel.com/en-us/articles/intel-mkl-main-libraries-contain-fftw3-interfaces

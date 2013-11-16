@@ -1,0 +1,50 @@
+#%Module1.0
+
+# ======================================================================
+#  Load useful procedures and variables to be using in this modulefile 
+# ======================================================================
+
+# This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
+source  $env(MODULEPROCS)
+
+if [ check_not_in_queue ] {
+    warning  {
+        Q-Chem is being loaded outside of job execution environment. 
+        Please use batch queue to run Q-Chem jobs.
+        No $LOCAL scratch directory set. 
+    }
+}
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver 4.1
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Q-Chem 4"
+
+conflict qchem
+
+# module load intel/2013.0
+# module load mkl/2013.0/icc-mt
+
+set root /home/dlambrecht/software/qchem41.trunk.20130919.omp.ccman2
+
+setenv QCSCRATCH     $::env(SCRATCH)/qchem
+setenv QCLOCALSCR    $::env(LOCAL)
+setenv QC            $root
+setenv QCAUX         $root/../qcaux4
+
+prepend-path PATH  $root/bin

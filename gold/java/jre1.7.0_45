@@ -1,0 +1,43 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "JAVA Runtime, version $ver"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict java
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# set root /opt/sam/java/jdk1.7.0_25
+  set root $::env(apps)/$modfile
+
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+setenv JAVA_ROOT $root
+setenv JAVA_HOME $root
+prepend-path PATH $root/bin

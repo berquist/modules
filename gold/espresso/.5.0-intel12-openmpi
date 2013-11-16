@@ -1,0 +1,92 @@
+#%Module
+
+
+# ======================================================================
+#  Load useful procedures and variables to be using in this modulefile 
+# ======================================================================
+
+# This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
+source  $env(MODULEPROCS)
+
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name 
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ] 
+set submods [ split "$modfile" / ]  
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Quantum ESPRESSO version: $ver"
+
+
+proc ModulesHelp { } {
+    set genericname "Quantum ESPRESSO"
+    set modfile [ module-info name ] 
+    puts stderr "$genericname - the $genericname package $modfile
+Sample job file: 
+
+======================================
+#!/bin/bash
+#PBS -j oe
+#PBS -q distributed
+#PBS -l walltime=1:00:00
+#PBS -l nodes=2:ppn=12
+
+module purge
+module load $modfile
+
+# Don't forget to set outdir
+# to appropriate values 
+# in your input file
+sed -i \"s%outdir *=.*%outdir='\$LOCAL'%\" input.file
+
+cd \$PBS_O_WORKDIR
+prun pw.x < input.file > output.file
+======================================
+"
+}
+
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+# module commands
+module-load-clean _runtime/intel-2011
+module load openmpi/1.6.x-intel
+#module load mkl/2011.9/icc-st-openmpi
+module load fftw/3.2.2-intel12
+
+# conflicting modules 
+# if the directory name of a collection of modules is specified 
+# then conflict with any one in that collection
+conflict espresso
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root /opt/sam/espresso/5.0/intel12-openmpi16
+
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+setenv ESPRESSO_ROOT $root
+setenv ESPRESSOBIN $root/bin
+setenv ESPRESSO_PSEUDO /opt/sam/espresso/pseudo
+setenv OMP_NUM_THREADS 1
+setenv MKL_NUM_THREADS 1
+prepend-path PATH $root/bin

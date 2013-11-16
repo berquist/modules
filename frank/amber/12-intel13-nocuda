@@ -1,0 +1,41 @@
+#%Module1.0
+
+# ----------------------------------------------------------------------
+# This is a template file for FRANK modules. Keep what is applicable
+# for specializations of module you are writing, almost anything here
+# is optional
+# ----------------------------------------------------------------------
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+# module commands
+module add env/intel-2013.0-openmpi-1.6
+
+# conflicting modules 
+# if the directory name of a collection of modules is specified 
+# then conflict with any one in that collection
+conflict amber
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root /opt/sam/amber/12/intel13/openmpi/amber12
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+setenv AMBERHOME $root
+prepend-path PATH $root/bin
+
+# ======================================================================
