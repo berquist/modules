@@ -37,7 +37,8 @@ setenv IPPROOT $root/ipp
 setenv TBBROOT $root/tbb
 setenv MKLROOT $root/mkl
 
-setenv TBB_ARCH "gcc4.4"
+set tbbarch "gcc4.4"
+setenv TBB_ARCH $tbbarch
 
 prepend-path MANPATH $root/man/en_US
 
@@ -46,13 +47,13 @@ prepend-path PATH $root/debugger/gui/$type
 
 prepend-path LD_LIBRARY_PATH $root/compiler/lib/$type
 prepend-path LD_LIBRARY_PATH $root/ipp/lib/$type
-prepend-path LD_LIBRARY_PATH $root/tbb/lib/$type/$::env(TBB_ARCH)
+prepend-path LD_LIBRARY_PATH $root/tbb/lib/$type/$tbbarch
 prepend-path LD_LIBRARY_PATH $root/mkl/lib/$type
 prepend-path LD_LIBRARY_PATH $root/debugger/lib/$type
 
 prepend-path LIBRARY_PATH $root/compiler/lib/$type
 prepend-path LIBRARY_PATH $root/ipp/lib/$type
-prepend-path LIBRARY_PATH $root/tbb/lib/$type/$::env(TBB_ARCH)
+prepend-path LIBRARY_PATH $root/tbb/lib/$type/$tbbarch
 prepend-path LIBRARY_PATH $root/mkl/lib/$type
 prepend-path LIBRARY_PATH $root/debugger/lib/$type
 
@@ -72,7 +73,7 @@ prepend-path NLSPATH $root/mkl/lib/$type/locale/%l_%t/%N
 prepend-path NLSPATH $root/debugger/lib/$type/locale/%l_%t/%N
 
 prepend-path CMAKE_LIBRARY_PATH $root/lib/$type
-prepend-path CMAKE_LIBRARY_PATH $root/tbb/lib/$type/$::env(TBB_ARCH)
+prepend-path CMAKE_LIBRARY_PATH $root/tbb/lib/$type/$tbbarch
 prepend-path CMAKE_LIBRARY_PATH $root/mkl/lib/$type
 
 prepend-path CMAKE_INCLUDE_PATH $root/tbb/include

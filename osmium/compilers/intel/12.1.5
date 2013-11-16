@@ -4,6 +4,8 @@
 # Useful Local Variables
 # ====================================================================
 
+# this file was 'intel/2011'
+
 #  $modfile      : This module's file path relative to modulefiles root
 #  $submods      : List of submodules
 #  $modfile_base : This module's plain file name
@@ -15,7 +17,7 @@ set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 set ver $submods
 
 # set root $::env(HOME)/opt/$modfile/composerxe
-  set root $::env(apps)/intel/2013_sp1_update1/composer_xe_2013_sp1.1.106
+  set root $::env(apps)/intel/2011_sp1_update3/composer_xe_2011_sp1.11.339
 set type intel64
 
 # ====================================================================
@@ -37,7 +39,8 @@ setenv IPPROOT $root/ipp
 setenv TBBROOT $root/tbb
 setenv MKLROOT $root/mkl
 
-setenv TBB_ARCH "gcc4.4"
+set tbbarch "gcc4.4"
+setenv TBB_ARCH $tbbarch
 
 prepend-path MANPATH $root/man/en_US
 
@@ -46,13 +49,13 @@ prepend-path PATH $root/debugger/gui/$type
 
 prepend-path LD_LIBRARY_PATH $root/compiler/lib/$type
 prepend-path LD_LIBRARY_PATH $root/ipp/lib/$type
-prepend-path LD_LIBRARY_PATH $root/tbb/lib/$type/$::env(TBB_ARCH)
+prepend-path LD_LIBRARY_PATH $root/tbb/lib/$type/$tbbarch
 prepend-path LD_LIBRARY_PATH $root/mkl/lib/$type
 prepend-path LD_LIBRARY_PATH $root/debugger/lib/$type
 
 prepend-path LIBRARY_PATH $root/compiler/lib/$type
 prepend-path LIBRARY_PATH $root/ipp/lib/$type
-prepend-path LIBRARY_PATH $root/tbb/lib/$type/$::env(TBB_ARCH)
+prepend-path LIBRARY_PATH $root/tbb/lib/$type/$tbbarch
 prepend-path LIBRARY_PATH $root/mkl/lib/$type
 prepend-path LIBRARY_PATH $root/debugger/lib/$type
 
@@ -72,7 +75,7 @@ prepend-path NLSPATH $root/mkl/lib/$type/locale/%l_%t/%N
 prepend-path NLSPATH $root/debugger/lib/$type/locale/%l_%t/%N
 
 prepend-path CMAKE_LIBRARY_PATH $root/lib/$type
-prepend-path CMAKE_LIBRARY_PATH $root/tbb/lib/$type/$::env(TBB_ARCH)
+prepend-path CMAKE_LIBRARY_PATH $root/tbb/lib/$type/$tbbarch
 prepend-path CMAKE_LIBRARY_PATH $root/mkl/lib/$type
 
 prepend-path CMAKE_INCLUDE_PATH $root/tbb/include
