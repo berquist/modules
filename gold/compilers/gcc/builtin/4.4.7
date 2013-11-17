@@ -73,6 +73,11 @@ prepend-path CPPPATH $root/include/c++/$ver
 prepend-path CPPPATH $lib/include
 prepend-path CPPPATH $lib/include-fixed
 
+prepend-path CPATH $root/include/c++/$ver/x86_64-linux-gnu/bits
+prepend-path CPATH $root/include/c++/$ver
+prepend-path CPATH $lib/include
+prepend-path CPATH $lib/include-fixed
+
 set-alias cpp cpp-4.4
 set-alias gcc gcc-4.4
 set-alias g++ g++-4.4
