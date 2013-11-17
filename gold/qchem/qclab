@@ -12,13 +12,13 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-#set ver xxx
+set ver 4.1
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4"
+module-whatis "Q-Chem 4.1, personal development version."
 
 # ====================================================================
 # Dependencies
@@ -27,8 +27,9 @@ module-whatis "Q-Chem 4"
 conflict qchem
 
 # built as follows:
-module purge
-module load armadillo/3.920.2
+# module purge
+# module load intel/2013.sp1.1
+# module load armadillo/3.920.2
 
 set root $::env(apps)/$modfile
 
