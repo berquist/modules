@@ -21,12 +21,13 @@ set ver 4.0
 module-whatis "Q-Chem 4"
 
 conflict qchem
-module rm intel mkl
-module load intel/11.1.072
+
+module rm intel compilers/intel mkl
+module load compilers/intel/11.1.072
 module load mkl/11.1.072/icc-st
 
 # set root /home/dlambrecht/software/qchem4.release.O2
-  set root $::env(QCPROGS)/$modfile
+  set root $::env(apps)/$modfile
 
 setenv QCSCRATCH   $::env(SCRATCH)/qchem
 setenv QC          $root

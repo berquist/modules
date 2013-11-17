@@ -14,8 +14,7 @@ set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 set ver $submods
 
-# set root $::env(HOME)/opt/$modfile/composerxe
-  set root $::env(apps)/intel/Compiler/11.1/072
+set root $::env(apps)/intel/Compiler/11.1/072
 set type intel64
 
 # ====================================================================

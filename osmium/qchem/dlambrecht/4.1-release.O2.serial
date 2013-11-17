@@ -24,7 +24,7 @@ module-whatis "Q-Chem 4"
 conflict qchem
 
 # set root /home/dlambrecht/software/qchem4.1.release.ser
-  set root $::env(QCPROGS)/$modfile
+  set root $::env(apps)/$modfile
 
 setenv QCSCRATCH   $::env(SCRATCH)/qchem
 setenv QC          $root
