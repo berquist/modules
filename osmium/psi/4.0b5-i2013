@@ -1,12 +1,12 @@
 #%Module1.0
 
+source $::env(MODULEPROCS)
+
 # ----------------------------------------------------------------------
 # This is a template file for FRANK modules. Keep what is applicable
 # for specializations of module you are writing, almost anything here
 # is optional
 # ----------------------------------------------------------------------
-
-#source $env(MODULEPROCS)
 
 # ======================================================================
 # Useful Local Variables
@@ -26,7 +26,7 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis ""
+module-whatis "http://psicode.org/"
 
 # ====================================================================
 # Dependencies
@@ -34,9 +34,10 @@ module-whatis ""
 
 # module commands
 
-# conflicting modules 
-# if the directory name of a collection of modules is specified 
+# conflicting modules
+# if the directory name of a collection of modules is specified
 # then conflict with any one in that collection
+
 conflict psi
 
 # ====================================================================
@@ -50,10 +51,6 @@ set root $::env(apps)/$modfile
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv PSI3 $::env(apps)/build/$modfile
-setenv PSI  $root
+setenv PSIHOME $root
+prepend-path PATH $root/bin
 
-prepend-path PATH    $root/bin
-prepend-path MANPATH $root/doc/man
-
-# ======================================================================
