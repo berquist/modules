@@ -28,9 +28,11 @@ conflict dalton
 
 # built with:
 # module purge
+# module load python/anaconda
 # module load intel/2013.sp1.1
 # module load openmpi/1.6.5-i2013.sp1.1
 
 set root $::env(apps)/$modfile
+
 prepend-path PATH $root/bin
-setenv DALTON_ROOT $root/DALTON
+setenv DALTON_ROOT $root
