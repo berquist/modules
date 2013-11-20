@@ -1,6 +1,6 @@
 #%Module1.0
 
-#source $env(MODULEPROCS)
+source $::env(MODULEPROCS)
 
 # ======================================================================
 # Useful Local Variables
@@ -26,9 +26,8 @@ module-whatis "Armadillo, a C++ linear algebra library (http://arma.sourceforge.
 # Dependencies
 # ====================================================================
 
+prereq mkl
 conflict armadillo
-
-# module load intel/2013.sp1.1
 
 # ====================================================================
 # Local settings
@@ -47,7 +46,7 @@ prepend-path LIBRARY_PATH    $root/lib
 prepend-path LD_LIBRARY_PATH $root/lib
 
 prepend-path -d " " SAMWRAP_FLAGS     "-I$root/include"
-prepend-path -d " " SAMWRAP_LDFLAGS   "-L$root/lib -larmadillo"
+prepend-path -d " " SAMWRAP_LDFLAGS   "-L$root/lib -lmkl_intel_thread -lmkl_core -lmkl_intel_lp64"
 
 setenv ARMADILLO_VER $ver
 
