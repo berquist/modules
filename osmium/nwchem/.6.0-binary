@@ -63,11 +63,11 @@ setenv MPIRUN_PATH       $::env(MPI_ROOT)/bin/mpirun
 # setenv NWCHEM_EXECUTABLE $NWCHEM_TOP/bin/${NWCHEM_TARGET}_${NWCHEM_TARGET_CPU}/nwchem
 # setenv PARALLEL_PATH     $NWCHEM_TOP/bin/${NWCHEM_TARGET}_${NWCHEM_TARGET_CPU}/parallel
 
-# setenv NWCHEM_NWPW_LIBRARY  $root/usr.local.lib.nwchem/libraryps/
-# setenv NWCHEM_BASIS_LIBRARY $root/usr.local.lib.nwchem/libraries/
+setenv NWCHEM_NWPW_LIBRARY  $root/usr.local.lib.nwchem/libraryps/
+setenv NWCHEM_BASIS_LIBRARY $root/usr.local.lib.nwchem/libraries/
 
-# system /bin/rm $root/etc/default.nwchemrc*
-# system $root/etc/gen_default.nwchemrc
+system /bin/rm $root/etc/default.nwchemrc
+system /bin/csh $root/etc/gen_default.nwchemrc
 system /bin/ln -fs $root/etc/default.nwchemrc ~/.nwchemrc
 
 prepend-path PATH $root/bin
