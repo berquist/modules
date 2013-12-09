@@ -1,6 +1,6 @@
 #%Module1.0
 
-source $env(MODULEPROCS)
+source  $env(MODULEPROCS)
 
 # ----------------------------------------------------------------------
 # This is a template file for FRANK modules. Keep what is applicable
@@ -26,31 +26,31 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "http://cec.mpg.de/forum/portal.php"
+module-whatis "Eight Megabytes And Constantly Swapping"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
 # module commands
-#module load amber/12-cuda-5.0-gcc45
 
 # conflicting modules
 # if the directory name of a collection of modules is specified
 # then conflict with any one in that collection
-conflict orca
+conflict emacs
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root /home/dlambrecht/software/orca_3_0_0_linux_x86-64
-setenv ORCAHOME $root
+set root $::env(apps)/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-prepend-path PATH $root
-
+setenv EMACS_ROOT $root
+prepend-path PATH $root/bin
+prepend-path LD_LIBRARY_PATH $root/lib
+prepend-path MANPATH $root/share/man
