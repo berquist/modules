@@ -2,6 +2,14 @@
 
 #source $env(MODULEPROCS)
 
+# ----------------------------------------------------------------------
+# This is a template file for FRANK modules. Keep what is applicable
+# for specializations of module you are writing, almost anything here
+# is optional
+# ----------------------------------------------------------------------
+
+#source $env(MODULEPROCS)
+
 # ======================================================================
 # Useful Local Variables
 # ======================================================================
@@ -20,16 +28,19 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "Armadillo, a C++ linear algebra library (http://arma.sourceforge.net)"
+module-whatis "http://cec.mpg.de/forum/portal.php"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-conflict armadillo
+# module commands
+#module load amber/12-cuda-5.0-gcc45
 
-#module load intel/2011
-#module load mkl/2011/icc-st
+# conflicting modules
+# if the directory name of a collection of modules is specified
+# then conflict with any one in that collection
+conflict orca
 
 # ====================================================================
 # Local settings
@@ -37,24 +48,11 @@ conflict armadillo
 
 # this is only sets a variable to be used in this modulefile
 set root $::env(apps)/$modfile
+setenv ORCAHOME $root
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv ARMADILLO_ROOT $root
+prepend-path PATH $root
 
-prepend-path LIBRARY_PATH    $root/lib
-prepend-path LD_LIBRARY_PATH $root/lib
-
-prepend-path -d " " SAMWRAP_FLAGS     "-I$root/include"
-prepend-path -d " " SAMWRAP_LDFLAGS   "-L$root/lib -larmadillo"
-
-setenv ARMADILLO_VER $ver
-
-prepend-path CMAKE_PREFIX_PATH  $root
-prepend-path CMAKE_LIBRARY_PATH $root/lib
-prepend-path CMAKE_INCLUDE_PATH $root/include
-
-prepend-path INCLUDE            $root/include
-prepend-path CPLUS_INCLUDE_PATH $root/include
