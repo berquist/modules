@@ -1,0 +1,40 @@
+#%Module1.0
+
+# ----------------------------------------------------------------------
+# This is a template file for FRANK modules. Keep what is applicable
+# for specializations of module you are writing, almost anything here
+# is optional
+# ----------------------------------------------------------------------
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Visual Molecular Dynamics. http://www.ks.uiuc.edu/Research/vmd/"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+# module commands
+
+# conflicting modules
+# if the directory name of a collection of modules is specified
+# then conflict with any one in that collection
+conflict vmd
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root $::env(apps)/vmd/1.9.1-binary
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+prepend-path PATH $root
+#prepend-path LD_LIBRARY_PATH $root/lib
+
+# ======================================================================

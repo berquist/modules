@@ -34,7 +34,7 @@ conflict dalton
 
 set root $::env(apps)/$modfile
 
-prepend-path PATH $root/build
+prepend-path PATH $root/bin
 setenv DALTON_ROOT $root
 
 setenv DALTON_TMPDIR $::env(SCRATCH)/dalton

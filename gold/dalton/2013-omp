@@ -30,11 +30,10 @@ conflict dalton
 # module purge
 # module load python/anaconda
 # module load intel/2013.sp1.1
-# module load openmpi/1.6.5-i2013.sp1.1
 
-set root $::env(apps)/$modfile
+set root $::env(apps)/dalton/2013
 
-prepend-path PATH $root/build
+prepend-path PATH $root/build_omp
 setenv DALTON_ROOT $root
 
 setenv DALTON_TMPDIR $::env(SCRATCH)/dalton
