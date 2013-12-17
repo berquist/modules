@@ -26,31 +26,50 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "http://cec.mpg.de/forum/portal.php"
+module-whatis ""
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
 # module commands
-#module load amber/12-cuda-5.0-gcc45
 
 # conflicting modules
 # if the directory name of a collection of modules is specified
 # then conflict with any one in that collection
-conflict orca
+conflict turbomole
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root /opt/sam/orca/orca_3_0_1_linux_x86-64
-setenv ORCAHOME $root
+set root $::env(apps)/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-prepend-path PATH $root
+# set number of nodes
+if [ info exists env(PBS_NODEFILE) ] {
+    if [ file isfile $env(PBS_NODEFILE) ] {
+        setenv PARNODES [ exec cat $env(PBS_NODEFILE) | wc -l ]
+        setenv HOSTS_FILE [ exec echo $env(PBS_NODEFILE) ]
+    }
+    if { [ exec echo $env(PARNODES) ] > 1 } {
+      setenv PARA_ARCH MPI
+    }
+}
+if [ info exists env(SCRATCH) ] {
+  setenv TURBOTMPDIR [ exec echo $env(SCRATCH) ]
+}
+
+set bintype [ exec $root/scripts/sysname ]
+
+setenv TURBODIR $root
+setenv MOLE_CONTROL $root/MoleControl_2.5
+prepend-path PATH $root/scripts
+prepend-path PATH $root/bin/$bintype
+# prepend-path PATH /opt/sam/turbomole/tmolex/3.4/TmoleX
+prepend-path LD_LIBRARY_PATH $root/libso/$bintype
 
