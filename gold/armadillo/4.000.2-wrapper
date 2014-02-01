@@ -45,7 +45,7 @@ prepend-path LIBRARY_PATH    $root/lib
 prepend-path LD_LIBRARY_PATH $root/lib
 
 prepend-path -d " " SAMWRAP_FLAGS     "-I$root/include"
-prepend-path -d " " SAMWRAP_LDFLAGS   "-L$root/lib -lmkl_intel_thread -lmkl_core -lmkl_intel_lp64"
+prepend-path -d " " SAMWRAP_LDFLAGS   "-L$root/lib -larmadillo"
 
 setenv ARMADILLO_VER $ver
 
