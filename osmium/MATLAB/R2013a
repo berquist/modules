@@ -1,0 +1,60 @@
+#%Module1.0
+
+if [ module-info mode load ] {
+     source $env(MODULEPROCS)
+     require_group_any {matlab adaley}
+}
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+# modulefile (this file relative to modulefiles root)
+set modfile [ module-info name ]
+# modulefile subdirectories in a list
+set l_modfile [ split "$modfile" / ]
+# basename
+set modfile_base [ lindex $l_modfile [ expr [ llength $l_modfile ] - 1 ] ]
+# basename is usually the version number
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Matlab (http://www.mathworks.com/products/matlab/), version $ver"
+
+proc ModulesHelp { } {
+    puts stderr "
+MATLAB - The Language of Technical Computing
+
+  To use MATLAB you need to initialize your environment:
+
+     module load $modfile
+
+  For convenience, you may want to add these two lines your
+  initialization script.
+
+"
+}
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict MATLAB
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+set root $::env(apps)/$modfile
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+append-path PATH $root/bin
+prepend-path LD_LIBRARY_PATH $root/runtime/glnxa64
+prepend-path LD_LIBRARY_PATH $root/bin/glnxa64
+
