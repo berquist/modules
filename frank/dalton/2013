@@ -1,7 +1,5 @@
 #%Module1.0
 
-#source $env(MODULEPROCS)
-
 # ======================================================================
 # Useful Local Variables
 # ======================================================================
@@ -38,6 +36,7 @@ conflict dalton
 
 set root $::env(apps)/$modfile
 
-prepend-path PATH $root/bin
+prepend-path PATH $root/build
 setenv DALTON_ROOT $root
 
+setenv DALTON_TMPDIR $::env(SCRATCH)/dalton
