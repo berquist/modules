@@ -30,7 +30,7 @@ module-whatis "OpenBabel Open Source Chemistry Tool Box: $ver"
 proc ModulesHelp { } {
     set genericname "OpenBabel"
     set modfile [ module-info name ] 
-    puts stderr "$genericname - the $genericname package $modfile
+    puts stderr "$genericname - the $genericname package $modfile"
 }
 
 # ====================================================================
@@ -44,7 +44,8 @@ module load mkl/11.1.072/gcc-st
 module load boost/1.50.0-gcc45
 module load cmake
 module load eigen
-module load python/epd-7.3
+module load swig/2.0.10
+module load python/anaconda
 
 # conflicting modules 
 # if the directory name of a collection of modules is specified 
@@ -56,16 +57,23 @@ conflict openbabel
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root /home/dlambrecht/erb74/repos/openbabel-build
+set root $::env(apps)/$modulefile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
 setenv OPENBABEL_ROOT $root/bin
-prepend-path PATH $root/bin
-prepend-path LD_LIBRARY_PATH $root/lib
-prepend-path C_INCLUDE_PATH $root/include
+prepend-path PATH     $root/bin
+
+prepend-path LD_LIBRARY_PATH    $root/lib
+prepend-path LIBRARY_PATH       $root/lib
+prepend-path C_INCLUDE_PATH     $root/include
 prepend-path CPLUS_INCLUDE_PATH $root/include
-prepend-path PKG_CONFIG_PATH $root/lib/pkgconfig
-#prepend-path PYTHONPATH
+prepend-path PKG_CONFIG_PATH    $root/lib/pkgconfig
+prepend-path PYTHONPATH         $root/lib
+prepend-path MANPATH            $root/share/man
+prepend-path CPATH              $root/include
+
+prepend-path -d " " SAMWRAP_FLAGS      "-pthread -I$root/include"
+prepend-path -d " " SAMWRAP_LDFLAGS    "-L$root/lib -lopenbabel"
