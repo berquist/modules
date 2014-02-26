@@ -33,7 +33,7 @@ conflict python
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set anaconda_root /opt/sam/anaconda/1.6.1
+set anaconda_root /opt/sam/anaconda/1.8.0
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
