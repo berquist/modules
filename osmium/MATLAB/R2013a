@@ -37,6 +37,6 @@ set root $::env(apps)/$modfile
 # ====================================================================
 
 prepend-path PATH $root/bin
-prepend-path LD_LIBRARY_PATH $root/runtime/glnxa64
-prepend-path LD_LIBRARY_PATH $root/bin/glnxa64
+append-path LD_LIBRARY_PATH $root/runtime/glnxa64
+append-path LD_LIBRARY_PATH $root/bin/glnxa64
 
