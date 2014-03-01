@@ -30,10 +30,17 @@ set root $::env(apps)/$modfile
 
 setenv QCSCRATCH   $::env(scratch)/qchem
 setenv QC          $root
-setenv QCAUX       /home/software/qcaux40
+setenv QCAUX       $root/../qcaux
 setenv QC_EXT_LIBS /home/software/qc_ext_libs
 setenv QCREF       $root/../qchem_dailyref
 setenv QCPLATFORM  LINUX_Ix86
 
 prepend-path PATH  $root/bin
 
+set svnroot https://jubilee.q-chem.com/svnroot
+setenv SVNROOT  $svnroot
+setenv QCSVN    $svnroot/qchem
+setenv QCREFSVN $svnroot/qchem_dailyref
+setenv QCAUXSVN $svnroot/qcaux
+setenv QCMANUAL $svnroot/qchem_manual
+# setenv SVN_EDITOR vim
