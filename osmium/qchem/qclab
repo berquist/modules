@@ -26,16 +26,21 @@ module-whatis "Q-Chem 4.1, personal development version."
 
 conflict qchem
 
-# built as follows:
-# module purge
-# module load intel/2013.sp1.1
-# module load armadillo/3.920.2
-
 set root $::env(apps)/$modfile
 
 setenv QCSCRATCH   $::env(SCRATCH)/qchem
 setenv QC          $root
 setenv QCAUX       $root/../qcaux4
 setenv QC_EXT_LIBS $root/../qc_ext_libs
+setenv QCREF       $root/../qcref
+setenv QCPLATFORM  LINUX_Ix86
 
 prepend-path PATH  $root/bin
+
+set svnroot https://jubilee.q-chem.com/svnroot
+setenv SVNROOT  $svnroot
+setenv QCSVN    $svnroot/qchem
+setenv QCREFSVN $svnroot/qchem_dailyref
+setenv QCAUXSVN $svnroot/qcaux
+setenv QCMANUAL $svnroot/qchem_manual
+setenv SVN_EDITOR emacs

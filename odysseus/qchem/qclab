@@ -43,4 +43,4 @@ setenv QCSVN    $svnroot/qchem
 setenv QCREFSVN $svnroot/qchem_dailyref
 setenv QCAUXSVN $svnroot/qcaux
 setenv QCMANUAL $svnroot/qchem_manual
-# setenv SVN_EDITOR vim
+setenv SVN_EDITOR emacs

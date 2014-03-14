@@ -18,7 +18,7 @@ set ver 4.1
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4.1, personal development version."
+module-whatis "Q-Chem 4.1, latest SVN version."
 
 # ====================================================================
 # Dependencies
