@@ -32,7 +32,7 @@ setenv QCSCRATCH   $::env(scratch)/qchem
 setenv QC          $root
 setenv QCAUX       $root/../qcaux
 setenv QC_EXT_LIBS /home/software/qc_ext_libs
-setenv QCREF       $root/../qchem_dailyref
+setenv QCREF       $root/../qcref
 setenv QCPLATFORM  LINUX_Ix86
 
 prepend-path PATH  $root/bin
