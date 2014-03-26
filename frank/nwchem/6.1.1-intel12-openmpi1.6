@@ -1,6 +1,11 @@
-#%Module1.0
+#%Module
 
-#source $env(MODULEPROCS)
+# ======================================================================
+#  Load useful procedures and variables to be using in this modulefile 
+# ======================================================================
+
+# This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
+source  $env(MODULEPROCS)
 
 # ======================================================================
 # Useful Local Variables
@@ -14,48 +19,51 @@
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver $modfile_base
-
-# ----------------------------------------------------------------------
-# This is a template file for FRANK modules. Keep what is applicable
-# for specializations of module you are writing, almost anything here
-# is optional
-# ----------------------------------------------------------------------
+set ver 6.1.1
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Modified Amber12/AmberTools13 for continuous ORCA output."
+module-whatis "NWChem (http://www.nwchem-sw.org/index.php/Main_Page)"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
 # module commands
-module load intel/2013.0
-module load boost/1.51.0-intel13
-module load openmpi/1.6.1-intel13
-module load mkl/2013.0/icc-st
-module load python/anaconda
+module-load-clean _runtime/intel-2011
+module rm openmpi python
+module load openmpi/1.6.x-intel
+module load python/2.7-gcc45
 
 # conflicting modules 
 # if the directory name of a collection of modules is specified 
 # then conflict with any one in that collection
-conflict amber
+
+conflict nwchem
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(apps)/$modfile
+set root /opt/sam/nwchem/6.1.1/intel12-openmpi16
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv AMBERHOME $root
-prepend-path PATH $root/bin
+setenv NWCHEM_ROOT $root
+setenv NWCHEM_HOME $root
+setenv NWCHEM_TOP  $root
 
-# ======================================================================
+setenv NWCHEM_TARGET     LINUX64
+setenv NWCHEM_EXECUTABLE $root/bin/nwchem
+
+setenv NWCHEM_NWPW_LIBRARY  $root/data/libraryps/
+setenv NWCHEM_BASIS_LIBRARY $root/data/libraries/
+
+system /bin/ln -fs $root/data/default.nwchemrc ~/.nwchemrc
+
+prepend-path PATH $root/bin

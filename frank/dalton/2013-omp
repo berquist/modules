@@ -29,14 +29,14 @@ conflict dalton
 # built with:
 # module rm cmake intel openmpi mkl boost
 # module load cmake/2.8.11.2
-# module load intel/2013.0
-# module load openmpi/1.6.3-intel13
-# module load mkl/2013.0/icc-st-openmpi
+# module load intel/2011.12
+# module load openmpi/1.6.
+# module load mkl/2013.0/icc-mt
 # module load boost/1.51.0-intel13
 
 set root $::env(apps)/dalton/2013
 
-prepend-path PATH $root/build
+prepend-path PATH $root/build_omp
 setenv DALTON_ROOT $root
 
 setenv DALTON_TMPDIR $::env(LOCAL)/dalton
