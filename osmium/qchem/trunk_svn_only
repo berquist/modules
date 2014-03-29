@@ -31,7 +31,7 @@ set root $::env(apps)/$modfile
 setenv QCSCRATCH   $::env(scratch)/qchem
 setenv QC          $root
 setenv QCAUX       $root/../qcaux
-setenv QC_EXT_LIBS /home/software/qc_ext_libs
+setenv QC_EXT_LIBS $root/../qc_ext_libs
 setenv QCREF       $root/../qcref
 setenv QCPLATFORM  LINUX_Ix86
 

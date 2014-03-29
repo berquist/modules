@@ -28,7 +28,7 @@ conflict qchem
 
 setenv QCSCRATCH   $::env(SCRATCH)/qchem
 setenv QC          $root
-setenv QCAUX       $root/../../qcaux4
+setenv QCAUX       $root/../../qcaux
 setenv QC_EXT_LIBS $root/../../qc_ext_libs
 
 prepend-path PATH  $root/bin
