@@ -12,35 +12,26 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-# set ver xxx
+set ver 4.0
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem, SVN trunk (latest development version)."
-
-# ====================================================================
-# Dependencies
-# ====================================================================
+module-whatis "Q-Chem 4.0, compiled on Frank."
 
 conflict qchem
 
-set root $::env(apps)/$modfile
+module rm intel compilers/intel mkl
+module load compilers/intel/11.1.072
+module load mkl/11.1.072/icc-st
 
-setenv QCSCRATCH   $::env(scratch)/qchem
+# set root /home/dlambrecht/software/qchem4.release.O2
+  set root $::env(apps)/$modfile
+
+setenv QCSCRATCH   $::env(SCRATCH)/qchem
 setenv QC          $root
-setenv QCAUX       $root/../qcaux
-setenv QC_EXT_LIBS $root/../qc_ext_libs
-setenv QCREF       $root/../qcref
-setenv QCPLATFORM  LINUX_Ix86
+setenv QCAUX       $root/../../qcaux
+setenv QC_EXT_LIBS $root/../../qc_ext_libs
 
 prepend-path PATH  $root/bin
-
-set svnroot https://jubilee.q-chem.com/svnroot
-setenv SVNROOT  $svnroot
-setenv QCSVN    $svnroot/qchem
-setenv QCREFSVN $svnroot/qchem_dailyref
-setenv QCAUXSVN $svnroot/qcaux
-setenv QCMANUAL $svnroot/qchem_manual
-setenv SVN_EDITOR emacs
