@@ -12,13 +12,13 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 4.1
+# set ver xxx
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4.1, personal development version."
+module-whatis "Q-Chem, SVN branch 'ericb' version."
 
 # ====================================================================
 # Dependencies

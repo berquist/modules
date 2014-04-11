@@ -26,15 +26,13 @@ module-whatis "Q-Chem 4.1"
 
 conflict qchem
 
-# built as follows:
-# module purge
-# module load intel/2013.sp1.1
-
 set root $::env(apps)/$modfile
 
-setenv QCSCRATCH   $::env(SCRATCH)/qchem
+setenv QCSCRATCH   $::env(scratch)/qchem
 setenv QC          $root
-setenv QCAUX       $root/../qcaux4
+setenv QCAUX       $root/../qcaux
 setenv QC_EXT_LIBS $root/../qc_ext_libs
+setenv QCREF       $root/../qcref
+setenv QCPLATFORM  LINUX_Ix86
 
 prepend-path PATH  $root/bin

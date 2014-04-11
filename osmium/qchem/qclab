@@ -12,13 +12,13 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 4.1
+# set ver xxx
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4.1, personal development version."
+module-whatis "Q-Chem, group Git development version."
 
 # ====================================================================
 # Dependencies
@@ -28,9 +28,9 @@ conflict qchem
 
 set root $::env(apps)/$modfile
 
-setenv QCSCRATCH   $::env(SCRATCH)/qchem
+setenv QCSCRATCH   $::env(scratch)/qchem
 setenv QC          $root
-setenv QCAUX       $root/../qcaux4
+setenv QCAUX       $root/../qcaux
 setenv QC_EXT_LIBS $root/../qc_ext_libs
 setenv QCREF       $root/../qcref
 setenv QCPLATFORM  LINUX_Ix86
