@@ -1,0 +1,59 @@
+#%Module1.0
+
+source  $env(MODULEPROCS)
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+# modulefile (this file relative to modulefiles root)
+set modfile [ module-info name ]
+# modulefile subdirectories in a list
+set l_modfile [ split "$modfile" / ]
+# basename
+set modfile_base [ lindex $l_modfile [ expr [ llength $l_modfile ] - 1 ] ]
+# basename is usually the version number
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "NetLib BLAS/LAPACK, compiled with the system GNU compilers."
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict blas
+conflict lapack
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root $::env(apps)/$modfile
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+setenv BLAS_ROOT   $root
+setenv LAPACK_ROOT $root
+
+prepend-path CPATH              $root/include
+prepend-path INCLUDE            $root/include
+prepend-path LIBRARY_PATH       $root/lib
+prepend-path LD_LIBRARY_PATH    $root/lib
+prepend-path CMAKE_LIBRARY_PATH $root/lib
+
+# ====================================================================
+# Compiler wrapper modifications
+# ====================================================================
+#
+# The compiler wrappers use the following variables
+#
+
+# prepend-path -d " " SAMWRAP_FLAGS   "-I$root/include"
+# prepend-path -d " " SAMWRAP_LDFLAGS "-L$root/lib -latlas -lcblas -lf77blas -llapack -lptcblas -lptf77blas"
