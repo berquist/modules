@@ -27,7 +27,7 @@ if [ check_not_in_queue ] {
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 4.1
+set ver 4.2
 
 # ======================================================================
 # Documentation
@@ -45,7 +45,8 @@ set root $::env(apps)/$modfile
 
 setenv QCSCRATCH     $::env(LOCAL)/qchem
 setenv QC            $root
-setenv QCAUX         /home/dlambrecht/software/qcaux4
+# setenv QCAUX         /home/dlambrecht/software/qcaux4
+setenv QCAUX         $root/../qcaux
 setenv QC_EXT_LIBS   /home/dlambrecht/software/lib/qc_ext_libs
 setenv QCREF         $root/../qcref
 setenv QCPLATFORM    LINUX_Ix86
