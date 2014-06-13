@@ -1,0 +1,61 @@
+#%Module1.0
+
+# ----------------------------------------------------------------------
+# This is a template file for FRANK modules. Keep what is applicable
+# for specializations of module you are writing, almost anything here
+# is optional
+# ----------------------------------------------------------------------
+
+source $env(MODULEPROCS)
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name 
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ] 
+set submods [ split "$modfile" / ]  
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+# module commands
+# module load intel/2013.sp1.1
+# module load openmpi/1.6.5-i2013.sp1.1
+
+# conflicting modules 
+# if the directory name of a collection of modules is specified 
+# then conflict with any one in that collection
+conflict amber
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root $::env(apps)/$modfile
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+setenv AMBERHOME $root
+prepend-path PATH $root/bin
+setenv GAU_NCPUS 4
+setenv ORC_NCPUS 4
+setenv GMS_NCPUS 4
+
+# ======================================================================
