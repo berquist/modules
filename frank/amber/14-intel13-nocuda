@@ -1,0 +1,45 @@
+#%Module1.0
+
+source  $env(MODULEPROCS)
+
+# ----------------------------------------------------------------------
+# This is a template file for FRANK modules. Keep what is applicable
+# for specializations of module you are writing, almost anything here
+# is optional
+# ----------------------------------------------------------------------
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+module load python/anaconda
+module load intel/2013.0
+module load mkl/2013.0/icc-st
+module load openmpi/1.6.5-intel12
+
+# conflicting modules 
+# if the directory name of a collection of modules is specified 
+# then conflict with any one in that collection
+conflict amber
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root /opt/sam/rhel6/amber/amber14
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+setenv AMBERHOME $root
+prepend-path PATH $root/bin
+
+# ======================================================================
