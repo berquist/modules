@@ -12,13 +12,12 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 4.1
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4.1, personal development version."
+module-whatis "Q-Chem, git-svn 'gatekeeper' repository."
 
 # ====================================================================
 # Dependencies
@@ -26,9 +25,11 @@ module-whatis "Q-Chem 4.1, personal development version."
 
 conflict qchem
 
-set root $::env(apps)/$modfile
+# set root $::env(apps)/$modfile
+  set root /home/eric/opt/apps/qchem/gatekeeper
 
-setenv QCSCRATCH   $::env(scratch)/qchem
+# setenv QCSCRATCH   $::env(scratch)/qchem
+  setenv QCSCRATCH   /home/eric/scratch/qchem
 setenv QC          $root
 setenv QCAUX       $root/../qcaux
 setenv QC_EXT_LIBS /home/software/qc_ext_libs
