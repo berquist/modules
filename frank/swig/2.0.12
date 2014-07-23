@@ -7,6 +7,7 @@
 # This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
 source  $env(MODULEPROCS)
 
+
 # ======================================================================
 # Useful Local Variables
 # ======================================================================
@@ -25,12 +26,13 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "OpenBabel Open Source Chemistry Tool Box: $ver"
+module-whatis "SWIG: $ver"
+
 
 proc ModulesHelp { } {
-    set genericname "OpenBabel"
+    set genericname "swig"
     set modfile [ module-info name ] 
-    puts stderr "$genericname - the $genericname package $modfile"
+    puts stderr "$genericname - the $genericname package $modfile
 }
 
 # ====================================================================
@@ -38,42 +40,25 @@ proc ModulesHelp { } {
 # ====================================================================
 
 # module commands
-module load gcc/4.7.2
-module load openmpi/1.6.3-gcc47
-module load mkl/11.1.072/gcc-st
-module load boost/1.50.0-gcc45
-module load cmake
-module load eigen
-module load swig/2.0.10
-module load python/anaconda
 
 # conflicting modules 
-# if the directory name of a collection of modules is specified 
-# then conflict with any one in that collection
-conflict openbabel
+prereq gcc/4.8.2-rhel
+prereq python/2.7.6-gcc48
+prereq boost/1.55.0-gcc48
+conflict swig
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(apps)/$modfile
+set root /opt/sam/swig/2.0.12/gcc48
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv OPENBABEL_ROOT $root/bin
-prepend-path PATH     $root/bin
+setenv SWIG_ROOT $root/bin
 
-prepend-path LD_LIBRARY_PATH    $root/lib
-prepend-path LIBRARY_PATH       $root/lib
-prepend-path C_INCLUDE_PATH     $root/include
-prepend-path CPLUS_INCLUDE_PATH $root/include
-prepend-path PKG_CONFIG_PATH    $root/lib/pkgconfig
-prepend-path PYTHONPATH         $root/lib
-prepend-path MANPATH            $root/share/man
-prepend-path CPATH              $root/include
-
-prepend-path -d " " SAMWRAP_FLAGS      "-pthread -I$root/include"
-prepend-path -d " " SAMWRAP_LDFLAGS    "-L$root/lib -lopenbabel"
+prepend-path PATH $root/bin
+prepend-path MANPATH $root/share/man
