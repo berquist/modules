@@ -12,13 +12,13 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-# set ver xxx
+set ver 4.2.0
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem, latest Git/SVN trunk, compiled with GCC."
+module-whatis "Q-Chem"
 
 # ====================================================================
 # Dependencies
@@ -30,17 +30,13 @@ set root $::env(apps)/$modfile
 
 setenv QCSCRATCH   $::env(SCRATCH)/qchem
 setenv QC          $root
-setenv QCAUX       $root/../qcaux
-setenv QC_EXT_LIBS $root/../qc_ext_libs
-setenv QCREF       $root/../qcref
-setenv QCPLATFORM  LINUX_Ix86
+setenv QCAUX       $root/qcaux
+setenv QCPLATFORM  MAC_Ix86
+
+setenv QCMPI       seq
+setenv QCRSH       ssh
+setenv QCPROG      $root/exe/qcprog.exe
+setenv QCPROG_S    $root/exe/qcprog.exe_s
 
 prepend-path PATH  $root/bin
-
-set svnroot https://jubilee.q-chem.com/svnroot
-setenv SVNROOT  $svnroot
-setenv QCSVN    $svnroot/qchem
-setenv QCREFSVN $svnroot/qchem_dailyref
-setenv QCAUXSVN $svnroot/qcaux
-setenv QCMANUAL $svnroot/qchem_manual
-setenv SVN_EDITOR emacs
+prepend-path PATH  $root/exe
