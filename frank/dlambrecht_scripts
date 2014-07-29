@@ -1,12 +1,12 @@
 #%Module1.0
 
-source $env(MODULEPROCS)
-
 # ----------------------------------------------------------------------
 # This is a template file for FRANK modules. Keep what is applicable
 # for specializations of module you are writing, almost anything here
 # is optional
 # ----------------------------------------------------------------------
+
+source $env(MODULEPROCS)
 
 # ======================================================================
 # Useful Local Variables
@@ -20,33 +20,30 @@ source $env(MODULEPROCS)
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver $modfile_base
+#set ver $modfile_base
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "http://cec.mpg.de/forum/portal.php"
+module-whatis "Group Scripts"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
 # module commands
-#module load amber/12-cuda-5.0-gcc45
 
-# conflicting modules
-# if the directory name of a collection of modules is specified
+# conflicting modules 
+# if the directory name of a collection of modules is specified 
 # then conflict with any one in that collection
-conflict orca
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root /home/dlambrecht/software/orca_3_0_2_linux_x86-64
-setenv ORCAHOME $root
+set root /home/dlambrecht/software/scripts
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
@@ -54,3 +51,4 @@ setenv ORCAHOME $root
 
 prepend-path PATH $root
 
+# ======================================================================

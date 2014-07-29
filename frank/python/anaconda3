@@ -33,7 +33,7 @@ conflict python
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set anaconda_root $::env(apps)/python/anaconda
+set anaconda_root $::env(apps)/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
