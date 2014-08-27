@@ -28,7 +28,7 @@ conflict vmd
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root /Applications/VMD 1.9.1.app/Contents/vmd
+set root "/Applications/VMD 1.9.1.app/Contents/vmd"
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
