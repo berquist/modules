@@ -1,6 +1,4 @@
-#%Module1.0
-
-source  $env(MODULEPROCS)
+#%Module
 
 # ======================================================================
 # Useful Local Variables
@@ -20,30 +18,30 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "Continuum Analytics. http://continuum.io"
+module-whatis "ACML, AMD Core Math Library, version $ver, to use with GNU compilers, 4-byte integers, multi-threaded (OpenMPI)."
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-conflict python
+# module commands
+conflict acml
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
-# this is only sets a variable to be used in this modulefile
-set anaconda_root /opt/sam/anaconda/1.8.0
+set root $::env(apps)/acml/5.3.1/gfortran64_mp
+
+setenv ACML_ROOT $root
+prepend-path LD_LIBRARY_PATH $root/lib
+prepend-path CMAKE_PREFIX_PATH $root
 
 # ====================================================================
-# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# Compiler wrapper modifications 
 # ====================================================================
 
-prepend-path PATH     $anaconda_root/bin
-prepend-path MANPATH  $anaconda_root/share/man
-prepend-path INFOPATH $anaconda_root/share/info
+prepend-path -d " " SAMWRAP_FLAGS        "-I$root/include"
+prepend-path -d " " SAMWRAP_LDFLAGS      "-L$root/lib -lacml_mp"
 
-setenv ANACONDA_ROOT    $anaconda_root
-setenv ANACONDA_BIN     $anaconda_root/bin
-setenv ANACONDA_LIB     $anaconda_root/lib
-setenv ANACONDA_INCLUDE $anaconda_root/include
+
