@@ -25,13 +25,12 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "Libxc is a library of exchange-correlation functionals for density-functional theory."
+module-whatis "Libxc is a library of exchange-correlation functionals for density functional theory."
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-module load intel/2013.1
 conflict libxc
 
 # ====================================================================
@@ -46,7 +45,5 @@ set root $::env(apps)/$modfile
 
 setenv LIBXC_ROOT $root
 
-# prepend-path LD_RUN_PATH     $root/lib
 prepend-path LD_LIBRARY_PATH $root/lib
 prepend-path INCLUDE         $root/include
-
