@@ -1,0 +1,46 @@
+#%Module
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "ACML, AMD Core Math Library, version $ver, to use with GNU compilers, 4-byte integers, serial."
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+# module commands
+conflict acml
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+set root $::env(apps)/acml/6.0.6.13/gfortran64
+
+setenv ACML_ROOT $root
+prepend-path LD_LIBRARY_PATH   $root/lib
+prepend-path CMAKE_PREFIX_PATH $root
+prepend-path ACML_SCRIPT_PATH  $root/lib/resources
+
+# ====================================================================
+# Compiler wrapper modifications
+# ====================================================================
+
+prepend-path -d " " SAMWRAP_FLAGS        "-I$root/include"
+prepend-path -d " " SAMWRAP_LDFLAGS      "-L$root/lib -lacml"
