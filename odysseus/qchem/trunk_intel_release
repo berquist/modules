@@ -1,0 +1,47 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Q-Chem, git-svn 'gatekeeper' repository."
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict qchem
+
+# set root $::env(apps)/$modfile
+  set root /home/eric/opt/apps/qchem/trunk_intel_release
+
+# setenv QCSCRATCH   $::env(scratch)/qchem
+  setenv QCSCRATCH   /home/eric/scratch/qchem
+setenv QC          $root
+setenv QCAUX       $root/../qcaux
+setenv QC_EXT_LIBS /home/software/qc_ext_libs
+setenv QCREF       $root/../qcref
+setenv QCPLATFORM  LINUX_Ix86
+
+prepend-path PATH  $root/bin
+
+set svnroot https://jubilee.q-chem.com/svnroot
+setenv SVNROOT  $svnroot
+setenv QCSVN    $svnroot/qchem
+setenv QCREFSVN $svnroot/qchem_dailyref
+setenv QCAUXSVN $svnroot/qcaux
+setenv QCMANUAL $svnroot/qchem_manual
+setenv SVN_EDITOR emacs
