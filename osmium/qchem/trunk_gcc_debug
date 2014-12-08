@@ -44,5 +44,3 @@ setenv QCREFSVN $svnroot/qchem_dailyref
 setenv QCAUXSVN $svnroot/qcaux
 setenv QCMANUAL $svnroot/qchem_manual
 setenv SVN_EDITOR emacs
-
-exec ln -fsv $::env(QC_EXT_LIBS)/libcosmo2/lib/libcosmo2_linux64_gfortran.a $::env(QC_EXT_LIBS)/libcosmo2/lib/libcosmo2.a
