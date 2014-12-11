@@ -12,13 +12,13 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 4.2
+set ver trunk
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem, Customer/Distribution Build, version $ver"
+module-whatis "Q-Chem, Customer/Distribution Build, Latest Trunk."
 
 # ====================================================================
 # Dependencies

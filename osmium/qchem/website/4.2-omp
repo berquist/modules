@@ -18,7 +18,7 @@ set ver 4.2
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem"
+module-whatis "Q-Chem, Customer/Distribution Build, version $ver"
 
 # ====================================================================
 # Dependencies
