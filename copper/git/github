@@ -26,7 +26,7 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "Git, version $ver"
+module-whatis "Git, the latest version from Github."
 
 # ====================================================================
 # Dependencies
