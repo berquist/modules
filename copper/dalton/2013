@@ -38,5 +38,5 @@ prepend-path PATH $root/build
 setenv DALTON_ROOT $root
 
 setenv DALTON_TMPDIR $::env(SCRATCH)/dalton
-setenv CTEST_MAKE_NUM_PROCS 8
+setenv CTEST_MAKE_NUM_PROCS 4
 # setenv DALTON_NUM_MPI_PROCS 4
