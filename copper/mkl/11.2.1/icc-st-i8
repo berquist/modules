@@ -13,17 +13,14 @@ module: $modfile
 Loads the Math Kernel Library to use with 
 
  * Intel compiler suite
- * Multi-threaded (recommended for sequential or OpenMP applications)
+ * Single-threaded (recommended for MPI applications)
  * 64bit integers (if you are using -i8 flag at compilation)
-
-Use the single-threaded `st' versions with with MPI applications, NOT THIS. 
 
 "
 }
 
 
-module-whatis  "Loads the Math Kernel Library (with icc, multi-threaded)"
-
+module-whatis  "Loads the Math Kernel Library (with icc, single-threaded)"
 
 # ----------------------------------------------------------------------
 #  PRE-CONDITIONS
@@ -36,7 +33,7 @@ conflict mkl
 # ----------------------------------------------------------------------
 
 #set root /opt/sam/intel/composer_xe_2013.0.079/
-set root $::env(apps)/intel/2011/composer_xe_2011_sp1.11.339/mkl
+set root $::env(apps)/intel/2015_update1/composer_xe_2015.1.133/mkl
 set lib $root/lib/intel64
 
 setenv MKLROOT $root
@@ -47,14 +44,14 @@ prepend-path NLSPATH $lib/locale/en_US
 
 set ldflags {\
                  -lmkl_intel_ilp64 \
-                 -lmkl_intel_thread \
+                 -lmkl_sequential \
                  -lmkl_core \
                  -lpthread \
                  -lm \
              }
 
-prepend-path -d " " SAMWRAP_LDFLAGS "-openmp -L$lib $ldflags"
-prepend-path -d " " SAMWRAP_FLAGS "-openmp -I$root/include"
+prepend-path -d " " SAMWRAP_LDFLAGS "-L$lib $ldflags"
+prepend-path -d " " SAMWRAP_FLAGS "-I$root/include"
 
 prepend-path CMAKE_LIBRARY_PATH $lib
 prepend-path CMAKE_INCLUDE_PATH $root/include

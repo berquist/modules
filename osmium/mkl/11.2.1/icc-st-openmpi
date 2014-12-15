@@ -14,25 +14,29 @@ Loads the Math Kernel Library to use with
 
  * Intel compiler suite
  * Single-threaded (recommended for MPI applications)
+ * With scalapack (it is OK to link with this even if you are not using Scalapack)
+ * Using OpenMPI
 
 "
 }
 
 
-module-whatis  "Loads the Math Kernel Library (with icc, single-threaded)"
+module-whatis  "Loads the Math Kernel Library (with icc, single-thread, openmpi)"
 
 # ----------------------------------------------------------------------
 #  PRE-CONDITIONS
 # ----------------------------------------------------------------------
 
 conflict mkl
+prereq openmpi
+
 
 # ----------------------------------------------------------------------
 # SETTINGS
 # ----------------------------------------------------------------------
 
 #set root /opt/sam/intel/composer_xe_2013.0.079/mkl
-set root $::env(apps)/intel/2011/composer_xe_2011_sp1.11.339/mkl
+set root $::env(apps)/intel/2015_update1/composer_xe_2015.1.133/mkl
 set lib $root/lib/intel64
 
 setenv MKLROOT $root
@@ -42,15 +46,19 @@ prepend-path MANPATH $root/../man/en_US
 prepend-path NLSPATH $lib/locale/en_US
 
 set ldflags {\
-		 -lmkl_intel_lp64 \
-		 -lmkl_sequential \
-		 -lmkl_core \
-		 -lpthread \
-		 -lm \
-	     }
+                 -lmkl_scalapack_lp64 \
+                 -lmkl_intel_lp64 \
+                 -lmkl_sequential \
+                 -lmkl_core \
+                 -lmkl_blacs_openmpi_lp64 \
+                 -lpthread \
+                 -lm \
+             }
+                 #-lmkl_cdtf_core \
 
-prepend-path -d " " SAMWRAP_LDFLAGS "-L$lib $ldflags"
-prepend-path -d " " SAMWRAP_FLAGS "-I$root/include"
+prepend-path -d  " " SAMWRAP_CC_LDFLAGS  "-L$lib $ldflags"
+prepend-path -d  " " SAMWRAP_CXX_LDFLAGS "-L$lib $ldflags"
+prepend-path -d  " " SAMWRAP_FC_LDFLAGS  "-L$lib $ldflags"
 
 prepend-path CMAKE_LIBRARY_PATH $lib
 prepend-path CMAKE_INCLUDE_PATH $root/include

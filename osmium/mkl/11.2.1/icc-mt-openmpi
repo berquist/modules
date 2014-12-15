@@ -16,8 +16,6 @@ Loads the Math Kernel Library to use with
  * Multi-threaded 
  * With scalapack (it is OK to link with this even if you are not using Scalapack)
  * Using OpenMPI for scalapack
- * 64bit integers (if you are using -i8 flag at compilation)
-
 
 Use of single-threaded version recommended. 
 
@@ -40,7 +38,7 @@ prereq openmpi
 # ----------------------------------------------------------------------
 
 #set root /opt/sam/intel/composer_xe_2013.0.079/
-set root $::env(apps)/intel/2011/composer_xe_2011_sp1.11.339/mkl
+set root $::env(apps)/intel/2015_update1/composer_xe_2015.1.133/mkl
 set lib $root/lib/intel64
 
 setenv MKLROOT $root
@@ -50,12 +48,12 @@ prepend-path MANPATH $root/../man/en_US
 prepend-path NLSPATH $lib/locale/en_US
 
 set ldflags {\
-                 -lmkl_scalapack_ilp64 \
+                 -lmkl_scalapack_lp64 \
                  -lmkl_cdtf_core \
-                 -lmkl_intel_ilp64 \
+                 -lmkl_intel_lp64 \
                  -lmkl_intel_thread \
                  -lmkl_core \
-                 -lmkl_blacs_openmpi_ilp64 \
+                 -lmkl_blacs_openmpi_lp64 \
                  -lpthread \
                  -lm \
              }
