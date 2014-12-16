@@ -37,12 +37,11 @@ module-whatis "Q-Chem 4"
 
 conflict qchem
 
-# dynamically linked against:
+# module purge
 # module load intel/2011.12
 # module load mkl/2011.12/icc-st
 # module load openmpi/1.4.4-intel12
 
-# source /opt/sam/qchem/trunk_2013-07-30/qcrc
 set root /opt/sam/qchem/trunk_2013-07-30
 
 setenv QCSCRATCH     $::env(SCRATCH)/qchem

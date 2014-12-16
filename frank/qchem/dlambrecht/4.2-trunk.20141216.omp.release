@@ -42,7 +42,7 @@ conflict qchem
 # module load mkl/2013.0/icc-st
 # module load gcc/4.8.2
 
-set root /home/dlambrecht/software/qchem42.trunk.20140824.omp.debug
+set root /home/dlambrecht/software/qchem42.trunk.20141216.omp.release
 
 setenv QCSCRATCH     $::env(SCRATCH)/qchem
 setenv QCLOCALSCR    $::env(LOCAL)
