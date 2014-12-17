@@ -43,7 +43,7 @@ module-whatis "OpenChemistry, from github."
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(HOME)/repositories/openchemistry/build/prefix
+set root $::env(apps)/build/openchemistry/build/prefix
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
