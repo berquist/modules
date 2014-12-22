@@ -26,7 +26,7 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "Git, the latest version from Github."
+module-whatis "Git, version $ver"
 
 # ====================================================================
 # Dependencies
@@ -50,4 +50,5 @@ set root $::env(apps)/$modfile
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-prepend-path PATH $root/bin
+prepend-path PATH    $root/bin
+prepend-path MANPATH $root/share/man
