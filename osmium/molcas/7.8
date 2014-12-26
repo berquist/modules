@@ -20,13 +20,13 @@ source $env(MODULEPROCS)
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-#set ver $modfile_base
+set ver $modfile_base
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "OpenChemistry, from github."
+module-whatis "MOLCAS, version $ver"
 
 # ====================================================================
 # Dependencies
@@ -38,18 +38,22 @@ module-whatis "OpenChemistry, from github."
 # if the directory name of a collection of modules is specified 
 # then conflict with any one in that collection
 
+conflict molcas
+
 # ====================================================================
 # Local settings
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(HOME)/repositories/openchemistry/build/prefix
+set root $::env(apps)/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv OPENCHEMISTRY_ROOT $root
 prepend-path PATH         $root/bin
+setenv MOLCAS             $root
+setenv MOLCAS_LICENSE     $root/..
+setenv MOLCAS_KEEP_WORDIR yes
 
 # ======================================================================

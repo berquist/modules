@@ -26,7 +26,7 @@ set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 # Documentation
 # ======================================================================
 
-module-whatis "Molequeue, from git"
+module-whatis "OpenChemistry, from github."
 
 # ====================================================================
 # Dependencies
@@ -49,6 +49,8 @@ set root $::env(apps)/$modfile
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-prepend-path PATH $root/bin
+setenv QTTESTING_ROOT $root
+prepend-path INCLUDE $root/include
+prepend-path CMAKE_PREFIX_PATH $root
 
 # ======================================================================
