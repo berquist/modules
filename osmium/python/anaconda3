@@ -26,7 +26,8 @@ module-whatis "Anaconda Python Distribution. http://continuum.io"
 # Dependencies
 # ====================================================================
 
-conflict python
+# live dangerously!
+# conflict python
 
 # ====================================================================
 # Local settings
