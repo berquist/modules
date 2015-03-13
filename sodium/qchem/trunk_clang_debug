@@ -33,7 +33,7 @@ setenv QC          $root
 setenv QCAUX       $root/../qcaux
 setenv QC_EXT_LIBS $root/../qc_ext_libs
 setenv QCREF       $root/../qcref
-setenv QCPLATFORM  LINUX_Ix86
+setenv QCPLATFORM  MAC_Ix86
 
 prepend-path PATH  $root/bin
 
