@@ -26,7 +26,7 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "http://psicode.org/"
+module-whatis "PSI4 (from GitHub) http://psicode.org/"
 
 # ====================================================================
 # Dependencies
@@ -51,6 +51,8 @@ set root $::env(apps)/$modfile
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv PSIHOME $root
-prepend-path PATH $root/bin
+setenv PSIHOME     $root
+setenv PSI4DATADIR $root/share/psi
+setenv PSI_SCRATCH $::env(scratch)/psi4
 
+prepend-path PATH $root/bin
