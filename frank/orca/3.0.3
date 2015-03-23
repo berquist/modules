@@ -26,15 +26,15 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "http://cec.mpg.de/forum/portal.php"
+module-whatis "ORCA: http://cec.mpg.de/forum/portal.php"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
 # module commands
-module load intel/2015.1.133
-module load mpi/openmpi/1.6.5-i2015.1.133
+module load intel/2013.0
+module load openmpi/1.6.5-intel12
 
 # conflicting modules
 # if the directory name of a collection of modules is specified
@@ -46,11 +46,12 @@ conflict orca
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root /home/dlambrecht/software/orca_3_0_3_linux_x86-64
-setenv ORCAHOME $root
+set root /home/dlambrecht/software/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
+
+setenv ORCAHOME $root
 
 prepend-path PATH $root

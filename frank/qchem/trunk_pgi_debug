@@ -27,26 +27,34 @@ if [ check_not_in_queue ] {
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 4.2
+#set ver $modfile_base
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4.2"
+module-whatis "Q-Chem, direct from the Trac SVN trunk!"
 
 conflict qchem
 
-# module purge
-# module load intel/2013.0
-# module load mkl/2013.0/icc-st
-# module load gcc/4.8.2
+module load pgi/12.8-rhel
 
-set root /home/dlambrecht/software/qchem42.trunk.20140824.omp.debug
+set root $::env(apps)/$modfile
 
-setenv QCSCRATCH     $::env(SCRATCH)/qchem
-setenv QCLOCALSCR    $::env(LOCAL)
+setenv QCSCRATCH     $::env(LOCAL)/qchem
 setenv QC            $root
-setenv QCAUX         $root/../qcaux4
+# setenv QCAUX         /home/dlambrecht/software/qcaux4
+setenv QCAUX         $root/../qcaux
+setenv QC_EXT_LIBS   /home/dlambrecht/software/lib/qc_ext_libs
+setenv QCREF         $root/../qcref
+setenv QCPLATFORM    LINUX_Ix86_64
 
 prepend-path PATH  $root/bin
+
+set svnroot https://jubilee.q-chem.com/svnroot
+setenv SVNROOT  $svnroot
+setenv QCSVN    $svnroot/qchem
+setenv QCREFSVN $svnroot/qchem_dailyref
+setenv QCAUXSVN $svnroot/qcaux
+setenv QCMANUAL $svnroot/qchem_manual
+setenv SVN_EDITOR emacs

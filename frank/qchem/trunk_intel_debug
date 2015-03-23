@@ -27,7 +27,7 @@ if [ check_not_in_queue ] {
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 4.2
+#set ver $modfile_base
 
 # ======================================================================
 # Documentation
