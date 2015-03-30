@@ -1,14 +1,12 @@
 #%Module1.0
 
-#source $env(MODULEPROCS)
-
 # ----------------------------------------------------------------------
 # This is a template file for FRANK modules. Keep what is applicable
 # for specializations of module you are writing, almost anything here
 # is optional
 # ----------------------------------------------------------------------
 
-#source $env(MODULEPROCS)
+source $env(MODULEPROCS)
 
 # ======================================================================
 # Useful Local Variables
@@ -16,11 +14,11 @@
 
 #  $modfile      : This module's file path relative to modulefiles root
 #  $submods      : List of submodules
-#  $modfile_base : This module's plain file name 
+#  $modfile_base : This module's plain file name
 #  $ver          : Module version (same as $modfile_base for now)
 
-set modfile [ module-info name ] 
-set submods [ split "$modfile" / ]  
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 set ver $modfile_base
 
@@ -28,7 +26,7 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "Visual Molecular Dynamics"
+module-whatis "Visual Molecular Dynamics. http://www.ks.uiuc.edu/Research/vmd/"
 
 # ====================================================================
 # Dependencies
@@ -47,11 +45,11 @@ conflict vmd
 
 # this is only sets a variable to be used in this modulefile
 set root $::env(apps)/$modfile
-setenv VMDHOME $root
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-prepend-path PATH $root/bin
+setenv VMDHOME    $root
 
+prepend-path PATH $root
