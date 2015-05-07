@@ -1,10 +1,14 @@
 #%Module
 
+# Original by Albert DeFusco, III
+# Modified version by Antonio M. Ferreira
+
 # ======================================================================
-#  Load useful procedures and variables to be using in this modulefile 
+#  Load useful procedures and variables to be using in this modulefile
 # ======================================================================
 
-# This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
+# This environment variable is defined in the global rc file
+# ($MODULESHOME/etc/rc).
 source  $env(MODULEPROCS)
 
 # ======================================================================
@@ -13,11 +17,11 @@ source  $env(MODULEPROCS)
 
 #  $modfile      : This module's file path relative to modulefiles root
 #  $submods      : List of submodules
-#  $modfile_base : This module's plain file name 
+#  $modfile_base : This module's plain file name
 #  $ver          : Module version (same as $modfile_base for now)
 
-set modfile [ module-info name ] 
-set submods [ split "$modfile" / ]  
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 set ver 6.1.1
 
@@ -37,8 +41,8 @@ module rm openmpi python
 module load openmpi/1.6.x-intel
 module load python/2.7-gcc45
 
-# conflicting modules 
-# if the directory name of a collection of modules is specified 
+# conflicting modules
+# if the directory name of a collection of modules is specified
 # then conflict with any one in that collection
 
 conflict nwchem
