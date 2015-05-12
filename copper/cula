@@ -14,32 +14,29 @@ source $env(MODULEPROCS)
 
 #  $modfile      : This module's file path relative to modulefiles root
 #  $submods      : List of submodules
-#  $modfile_base : This module's plain file name 
+#  $modfile_base : This module's plain file name
 #  $ver          : Module version (same as $modfile_base for now)
 
-set modfile [ module-info name ] 
-set submods [ split "$modfile" / ]  
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver $modfile_base
+#set ver $modfile_base
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
+module-whatis "CUDA Linear Algebra (CULA), for dense computation."
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
 # module commands
-# module load intel/2015.1
-# module load openmpi/1.6.5-i2013.sp1.1
 
-# conflicting modules 
-# if the directory name of a collection of modules is specified 
+# conflicting modules
+# if the directory name of a collection of modules is specified
 # then conflict with any one in that collection
-conflict amber
 
 # ====================================================================
 # Local settings
@@ -52,13 +49,9 @@ set root $::env(apps)/$modfile
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv AMBERHOME $root
-prepend-path PATH $root/bin
-append-path LD_LIBRARY_PATH $root/lib
-setenv MKL_HOME $::env(MKL_ROOT)
-setenv CUDA_HOME /opt/cuda
-setenv GAU_NCPUS 4
-setenv ORC_NCPUS 4
-setenv GMS_NCPUS 4
+setenv CULA_ROOT         $root
+setenv CULA_INC_PATH     $root/include
+setenv CULA_LIB_PATH_32  $root/lib
+setenv CULA_LIB_PATH_64  $root/lib64
 
 # ======================================================================

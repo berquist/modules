@@ -52,7 +52,9 @@ set root $::env(apps)/$modfile
 # ====================================================================
 
 setenv PSIHOME     $root
-setenv PSI4DATADIR $root/share/psi
+# setenv PSI4DATADIR $root/share/psi
+# setenv PSIDATADIR  $root/share/psi
+setenv PSIDATADIR $::env(apps)/build/psi4public/lib
 setenv PSI_SCRATCH $::env(scratch)/psi4
 
 prepend-path PATH $root/bin

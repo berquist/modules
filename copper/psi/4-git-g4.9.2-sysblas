@@ -1,12 +1,12 @@
 #%Module1.0
 
+source $::env(MODULEPROCS)
+
 # ----------------------------------------------------------------------
 # This is a template file for FRANK modules. Keep what is applicable
 # for specializations of module you are writing, almost anything here
 # is optional
 # ----------------------------------------------------------------------
-
-source $env(MODULEPROCS)
 
 # ======================================================================
 # Useful Local Variables
@@ -26,20 +26,19 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
+module-whatis "PSI4 (from GitHub) http://psicode.org/"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
 # module commands
-# module load intel/2015.1
-# module load openmpi/1.6.5-i2013.sp1.1
 
-# conflicting modules 
-# if the directory name of a collection of modules is specified 
+# conflicting modules
+# if the directory name of a collection of modules is specified
 # then conflict with any one in that collection
-conflict amber
+
+conflict psi
 
 # ====================================================================
 # Local settings
@@ -52,13 +51,10 @@ set root $::env(apps)/$modfile
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv AMBERHOME $root
-prepend-path PATH $root/bin
-append-path LD_LIBRARY_PATH $root/lib
-setenv MKL_HOME $::env(MKL_ROOT)
-setenv CUDA_HOME /opt/cuda
-setenv GAU_NCPUS 4
-setenv ORC_NCPUS 4
-setenv GMS_NCPUS 4
+setenv PSIHOME     $root
+# setenv PSI4DATADIR $root/share/psi
+# setenv PSIDATADIR  $root/share/psi
+setenv PSIDATADIR $::env(apps)/repositories/psi4public/lib
+setenv PSI_SCRATCH $::env(scratch)/psi4
 
-# ======================================================================
+prepend-path PATH $root/bin

@@ -54,6 +54,9 @@ set root $::env(apps)/$modfile
 
 setenv AMBERHOME $root
 prepend-path PATH $root/bin
+append-path LD_LIBRARY_PATH $root/lib
+setenv MKL_HOME $::env(MKL_ROOT)
+setenv CUDA_HOME /opt/cuda
 setenv GAU_NCPUS 4
 setenv ORC_NCPUS 4
 setenv GMS_NCPUS 4
