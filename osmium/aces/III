@@ -1,12 +1,14 @@
 #%Module1.0
 
-source $::env(MODULEPROCS)
+#source $env(MODULEPROCS)
 
 # ----------------------------------------------------------------------
 # This is a template file for FRANK modules. Keep what is applicable
 # for specializations of module you are writing, almost anything here
 # is optional
 # ----------------------------------------------------------------------
+
+#source $env(MODULEPROCS)
 
 # ======================================================================
 # Useful Local Variables
@@ -20,13 +22,13 @@ source $::env(MODULEPROCS)
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-#set ver $modfile_base
+set ver $modfile_base
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "GAMESS"
+module-whatis "Advanced Concepts in Electronic Structure Theory"
 
 # ====================================================================
 # Dependencies
@@ -37,21 +39,19 @@ module-whatis "GAMESS"
 # conflicting modules
 # if the directory name of a collection of modules is specified
 # then conflict with any one in that collection
-
-conflict gamess
+conflict aces
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(apps)/$modfile
+set root $::env(apps)/aces/acesiii
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv GAMESS_HOME $root
-setenv GMS_VERSION 00
-setenv SCR $::env(SCRATCH)/gamess
+setenv ACES_ROOT $root
+
 prepend-path PATH $root/bin

@@ -24,6 +24,8 @@ module-whatis "DALTON, an overly-complicated high-level quantum chemistry packag
 # Dependencies
 # ====================================================================
 
+module load openblas/0.2.9.rc2-gnu4.8.2
+
 conflict dalton
 
 # built with:
