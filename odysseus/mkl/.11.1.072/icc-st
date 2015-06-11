@@ -1,0 +1,59 @@
+#%Module1.0
+
+# ----------------------------------------------------------------------
+# HELP
+# ----------------------------------------------------------------------
+
+proc ModulesHelp { } {
+    set modfile [ module-info name ] 
+    puts stderr "
+
+module: $modfile
+
+Loads the Math Kernel Library to use with 
+
+ * Intel compiler suite
+ * Single-threaded (recommended for MPI applications)
+
+"
+}
+
+
+module-whatis  "Loads the Math Kernel Library (with icc, single-threaded)"
+
+# ----------------------------------------------------------------------
+#  PRE-CONDITIONS
+# ----------------------------------------------------------------------
+
+conflict mkl
+prereq intel
+
+# ----------------------------------------------------------------------
+# SETTINGS
+# ----------------------------------------------------------------------
+
+# set root /opt/sam/intel/Compiler/11.1/072/mkl
+  set root $::env(apps)/intel/Compiler/11.1/072/mkl
+set lib $root/lib/em64t
+
+setenv MKLROOT $root
+setenv MKL_ROOT $root
+prepend-path LD_LIBRARY_PATH $lib
+prepend-path MANPATH $root/man/en_US
+prepend-path NLSPATH $lib/locale/en_US
+prepend-path CMAKE_INCLUDE_PATH $root/include
+prepend-path CMAKE_LIBRARY_PATH $lib
+
+
+set ldflags {\
+                 -lmkl_solver_lp64_sequential \
+                 -lmkl_intel_lp64  \
+                 -lmkl_sequential  \
+                 -lmkl_core \
+                 -lpthread \
+             }
+
+prepend-path -d  " " SAMWRAP_LDFLAGS "-L$lib $ldflags"
+prepend-path -d  " " SAMWRAP_FLAGS "-I$root/include"
+
+

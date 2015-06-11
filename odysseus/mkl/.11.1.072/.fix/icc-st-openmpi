@@ -1,0 +1,58 @@
+#%Module1.0
+
+# ----------------------------------------------------------------------
+# HELP
+# ----------------------------------------------------------------------
+
+proc ModulesHelp { } {
+    set modfile [ module-info name ] 
+    puts stderr "
+
+module: $modfile
+
+Loads the Math Kernel Library to use with 
+
+ * Intel compiler suite
+ * Single-threaded (recommended for MPI applications)
+ * With scalapack (it is OK to link with this even if you are not using Scalapack)
+ * Using OpenMPI
+
+"
+}
+
+
+module-whatis  "Loads the Math Kernel Library (with icc, single-thread, openmpi)"
+
+# ----------------------------------------------------------------------
+#  PRE-CONDITIONS
+# ----------------------------------------------------------------------
+
+conflict mkl
+prereq intel
+prereq mpi/openmpi
+
+
+# ----------------------------------------------------------------------
+# SETTINGS
+# ----------------------------------------------------------------------
+
+set root /opt/sam/intel/Compiler/11.1/072/mkl
+set lib $root/lib/em64t
+
+setenv MKLROOT $root
+prepend-path LD_LIBRARY_PATH $lib
+prepend-path MANPATH $root/man/en_US
+prepend-path NLSPATH $lib/locale/en_US
+
+
+set ldflags {\
+                 -lmkl_scalapack_lp64 \
+                 -lmkl_solver_lp64_sequential \
+                 -lmkl_intel_lp64  \
+                 -lmkl_sequential  \
+                 -lmkl_core \
+                 -lmkl_blacs_openmpi_lp64 \
+                 -lpthread \
+             }
+
+prepend-path -d  " " SAMWRAP_LDFLAGS "-L$lib $ldflags"
