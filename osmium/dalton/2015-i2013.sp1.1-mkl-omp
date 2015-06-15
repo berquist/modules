@@ -12,7 +12,7 @@
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 2013
+set ver 2015
 
 # ======================================================================
 # Documentation
@@ -28,13 +28,11 @@ conflict dalton
 
 # built with:
 # module purge
-# module load python/anaconda
 # module load intel/2013.sp1.1
-# module load openmpi/1.6.5-i2013.sp1.1
 
-set root $::env(apps)/$modfile
+set root $::env(apps)/$modfile/dalton
 
-prepend-path PATH $root/bin
+prepend-path PATH $root
 setenv DALTON_ROOT $root
 
 setenv DALTON_TMPDIR $::env(SCRATCH)/dalton
