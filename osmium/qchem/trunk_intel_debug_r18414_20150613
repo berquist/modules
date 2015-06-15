@@ -12,13 +12,13 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 4.1
+# set ver xxx
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem 4.1"
+module-whatis "Q-Chem, latest Git/SVN trunk, compiled with Intel."
 
 # ====================================================================
 # Dependencies
@@ -28,7 +28,7 @@ conflict qchem
 
 set root $::env(apps)/$modfile
 
-setenv QCSCRATCH   $::env(scratch)/qchem
+setenv QCSCRATCH   $::env(SCRATCH)/qchem
 setenv QC          $root
 setenv QCAUX       $root/../qcaux
 setenv QC_EXT_LIBS $root/../qc_ext_libs
@@ -36,3 +36,11 @@ setenv QCREF       $root/../qcref
 setenv QCPLATFORM  LINUX_Ix86_64
 
 prepend-path PATH  $root/bin
+
+set svnroot https://jubilee.q-chem.com/svnroot
+setenv SVNROOT  $svnroot
+setenv QCSVN    $svnroot/qchem
+setenv QCREFSVN $svnroot/qchem_dailyref
+setenv QCAUXSVN $svnroot/qcaux
+setenv QCMANUAL $svnroot/qchem_manual
+setenv SVN_EDITOR emacs
