@@ -6,11 +6,11 @@
 
 #  $modfile      : This module's file path relative to modulefiles root
 #  $submods      : List of submodules
-#  $modfile_base : This module's plain file name 
+#  $modfile_base : This module's plain file name
 #  $ver          : Module version (same as $modfile_base for now)
 
-set modfile [ module-info name ] 
-set submods [ split "$modfile" / ]  
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 set ver 2013
 
@@ -33,9 +33,8 @@ conflict dalton
 
 set root $::env(apps)/dalton/2013
 
-prepend-path PATH $root/build_omp
 setenv DALTON_ROOT $root
+prepend-path PATH $root/build_omp
 
-setenv DALTON_TMPDIR $::env(SCRATCH)/dalton
+setenv DALTON_TMPDIR $::env(SCRATCH)
 setenv CTEST_MAKE_NUM_PROCS 4
-# setenv DALTON_NUM_MPI_PROCS 4
