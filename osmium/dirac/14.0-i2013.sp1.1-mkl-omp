@@ -6,13 +6,13 @@
 
 #  $modfile      : This module's file path relative to modulefiles root
 #  $submods      : List of submodules
-#  $modfile_base : This module's plain file name 
+#  $modfile_base : This module's plain file name
 #  $ver          : Module version (same as $modfile_base for now)
 
-set modfile [ module-info name ] 
-set submods [ split "$modfile" / ]  
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 2013
+set ver $modfile_base
 
 # ======================================================================
 # Documentation
@@ -33,4 +33,3 @@ setenv DIRAC_ROOT $root
 
 setenv DIRAC_TMPDIR $::env(SCRATCH)/dirac
 setenv CTEST_MAKE_NUM_PROCS 4
-# setenv DIRAC_NUM_MPI_PROCS 4
