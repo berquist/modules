@@ -14,11 +14,11 @@ source $env(MODULEPROCS)
 
 #  $modfile      : This module's file path relative to modulefiles root
 #  $submods      : List of submodules
-#  $modfile_base : This module's plain file name 
+#  $modfile_base : This module's plain file name
 #  $ver          : Module version (same as $modfile_base for now)
 
-set modfile [ module-info name ] 
-set submods [ split "$modfile" / ]  
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 set ver $modfile_base
 
@@ -34,10 +34,10 @@ module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
 
 # module commands
 # module load intel/2013.sp1.1
-# module load openmpi/1.6.5-i2013.sp1.1
+# module load mpi/openmpi/1.6.5-i2013.sp1.1
 
-# conflicting modules 
-# if the directory name of a collection of modules is specified 
+# conflicting modules
+# if the directory name of a collection of modules is specified
 # then conflict with any one in that collection
 conflict amber
 
