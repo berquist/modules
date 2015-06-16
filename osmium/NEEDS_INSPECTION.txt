@@ -1,0 +1,17 @@
+vmd
+tinker
+turbomole
+psi
+OpenChemistry
+openblas
+namd
+mrcc
+molequeue
+molcas
+MATLAB
+nwchem
+gamess
+firefly
+erkale
+charmm
+avogadrolibs
