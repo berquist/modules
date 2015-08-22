@@ -37,7 +37,8 @@ module-whatis "Q-Chem, direct from the Trac SVN trunk!"
 
 conflict qchem
 
-module load pgi/12.8-rhel
+module load intel/2015.1.133
+module load gcc/4.8.2
 
 set root $::env(apps)/$modfile
 
