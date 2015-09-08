@@ -32,19 +32,24 @@ conflict fftw
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root /opt/sam/fftw/3.3.2/intel13/serial/avx
+set root $::env(apps)/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
-setenv FFTW_ROOT $root
-prepend-path PATH $root/bin
-prepend-path LD_LIBRARY_PATH $root/lib
-prepend-path MANPATH $root/share/man
 
+setenv FFTW_ROOT $root
+setenv FFTW_DIR  $root
+
+prepend-path PATH              $root/bin
+prepend-path INCLUDE           $root/include
+prepend-path LD_LIBRARY_PATH   $root/lib
+prepend-path MANPATH           $root/share/man
+prepend-path CMAKE_PREFIX_PATH $root
 
 # ====================================================================
 # Compiler wrapper modifications 
 # ====================================================================
+
 prepend-path -d " " SAMWRAP_FLAGS        "-I$root/include"
 prepend-path -d " " SAMWRAP_LDFLAGS      "-L$root/lib"

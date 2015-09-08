@@ -18,35 +18,38 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "MKL wrappers for FFTW, fastest Fourier transform in the West, version $ver"
+module-whatis "FFTW, fastest Fourier transform in the West, version $ver"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-module add _runtime/intel-2011.1
+module load intel/2013.0 
 conflict fftw
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
-set root /opt/sam/intel/composerxe-2011.1.107/mkl
-
+# this is only sets a variable to be used in this modulefile
+set root $::env(apps)/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
-setenv FFTW_ROOT $root
-#prepend-path PATH $root/bin
-prepend-path LD_LIBRARY_PATH $root/lib/intel64
-prepend-path MANPATH $root/share/man
 
+setenv FFTW_ROOT $root
+setenv FFTW_DIR  $root
+
+prepend-path PATH              $root/bin
+prepend-path INCLUDE           $root/include
+prepend-path LD_LIBRARY_PATH   $root/lib
+prepend-path MANPATH           $root/share/man
+prepend-path CMAKE_PREFIX_PATH $root
 
 # ====================================================================
 # Compiler wrapper modifications 
 # ====================================================================
-prepend-path -d " " SAMWRAP_FLAGS        "-I$root/include/fftw"
-prepend-path -d " " SAMWRAP_LDFLAGS      "-L$root/lib/intel64"
-# core intel libraries already contain FFTW3 wrappers: 
-# see  http://software.intel.com/en-us/articles/intel-mkl-main-libraries-contain-fftw3-interfaces
+
+prepend-path -d " " SAMWRAP_FLAGS        "-I$root/include"
+prepend-path -d " " SAMWRAP_LDFLAGS      "-L$root/lib"

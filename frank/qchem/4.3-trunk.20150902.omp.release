@@ -33,7 +33,7 @@ set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem, direct from the Trac SVN trunk!"
+module-whatis "Q-Chem, direct from the Trac SVN trunk! (r18890)"
 
 conflict qchem
 
