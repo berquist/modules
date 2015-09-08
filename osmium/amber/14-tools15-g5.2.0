@@ -33,8 +33,7 @@ module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
 # ====================================================================
 
 # module commands
-# module load intel/2013.sp1.1
-# module load mpi/openmpi/1.6.5-i2013.sp1.1
+# module load mkl/11.1.1/icc-st
 
 # conflicting modules
 # if the directory name of a collection of modules is specified
