@@ -31,11 +31,11 @@ module-whatis "Modified Amber12/AmberTools13 for continuous ORCA output."
 # ====================================================================
 
 # module commands
+module load python/anaconda2
 module load intel/2013.0
 module load boost/1.51.0-intel13
 module load openmpi/1.6.1-intel13
 module load mkl/2013.0/icc-st
-module load python/anaconda
 
 # conflicting modules 
 # if the directory name of a collection of modules is specified 
@@ -54,6 +54,9 @@ set root $::env(apps)/$modfile
 # ====================================================================
 
 setenv AMBERHOME $root
+
 prepend-path PATH $root/bin
+append-path LD_LIBRARY_PATH $root/lib
+prepend-path PYTHONPATH $root/lib/python2.7
 
 # ======================================================================

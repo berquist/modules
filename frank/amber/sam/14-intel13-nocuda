@@ -16,7 +16,7 @@ module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
 # Dependencies
 # ====================================================================
 
-module load python/anaconda
+module load python/anaconda2
 module load intel/2013.0
 module load mkl/2013.0/icc-st
 module load openmpi/1.6.5-intel12
@@ -38,6 +38,9 @@ set root /opt/sam/rhel6/amber/amber14
 # ====================================================================
 
 setenv AMBERHOME $root
+
 prepend-path PATH $root/bin
+append-path LD_LIBRARY_PATH $root/lib
+prepend-path PYTHONPATH $root/lib/python2.7
 
 # ======================================================================

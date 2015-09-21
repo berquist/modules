@@ -33,7 +33,6 @@ module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
 # ====================================================================
 
 # module commands
-# module load mkl/11.1.1/icc-st
 
 # conflicting modules
 # if the directory name of a collection of modules is specified
@@ -52,10 +51,13 @@ set root $::env(apps)/$modfile
 # ====================================================================
 
 setenv AMBERHOME $root
+
 prepend-path PATH $root/bin
 append-path LD_LIBRARY_PATH $root/lib
-setenv MKL_HOME $::env(MKL_ROOT)
+prepend-path PYTHONPATH $root/lib/python2.7
+
 setenv CUDA_HOME /opt/cuda
+
 setenv GAU_NCPUS 4
 setenv ORC_NCPUS 4
 setenv GMS_NCPUS 4

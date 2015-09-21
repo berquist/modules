@@ -16,6 +16,7 @@ module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
 # Dependencies
 # ====================================================================
 
+# module commands
 module load gcc/4.5.1
 module load openmpi/1.4.5-gcc45
 module load python/epd-7.3
@@ -37,7 +38,10 @@ set root /opt/sam/amber/12/gcc45/openmpi/amber12
 # ====================================================================
 
 setenv AMBERHOME $root
+
 prepend-path PATH $root/bin
+append-path LD_LIBRARY_PATH $root/lib
+prepend-path PYTHONPATH $root/lib/python2.7
 
 # ======================================================================
 

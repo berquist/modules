@@ -36,6 +36,9 @@ set root /opt/sam/amber/12/intel13/openmpi/amber12
 # ====================================================================
 
 setenv AMBERHOME $root
+
 prepend-path PATH $root/bin
+append-path LD_LIBRARY_PATH $root/lib
+prepend-path PYTHONPATH $root/lib/python2.7
 
 # ======================================================================
