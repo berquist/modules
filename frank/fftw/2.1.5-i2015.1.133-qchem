@@ -24,7 +24,7 @@ module-whatis "FFTW, fastest Fourier transform in the West, version $ver"
 # Dependencies
 # ====================================================================
 
-module load gcc/5.2.0-rhel
+module load intel/2015.1.133
 conflict fftw
 
 # ====================================================================
