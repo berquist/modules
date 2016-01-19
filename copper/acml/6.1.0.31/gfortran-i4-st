@@ -31,7 +31,7 @@ conflict acml
 # Local settings
 # ====================================================================
 
-set root $::env(apps)/acml/6.0.6.13/gfortran64
+set root $::env(apps)/acml/6.1.0.31/gfortran64
 
 setenv ACML_ROOT $root
 prepend-path LD_LIBRARY_PATH   $root/lib
