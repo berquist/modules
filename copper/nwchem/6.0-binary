@@ -38,7 +38,7 @@ module-whatis "NWChem (http://www.nwchem-sw.org/index.php/Main_Page)"
 # then conflict with any one in that collection
 
 conflict nwchem
-prereq openmpi
+# prereq openmpi
 
 # ====================================================================
 # Local settings
