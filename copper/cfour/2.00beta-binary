@@ -32,9 +32,6 @@ module-whatis "CFOUR, version $ver"
 # ====================================================================
 
 # module commands
-module load intel/2015.1
-# module load openmpi/1.6.3-intel12-i8
-# module load mkl/2011.12/icc-mt-openmpi-i8
 
 # conflicting modules
 # if the directory name of a collection of modules is specified
