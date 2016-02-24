@@ -14,7 +14,7 @@ source $env(MODULEPROCS)
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-#set ver $modfile_base
+set ver 3
 
 # ======================================================================
 # Documentation
@@ -48,3 +48,5 @@ setenv ANACONDA_ROOT    $anaconda_root
 setenv ANACONDA_BIN     $anaconda_root/bin
 setenv ANACONDA_LIB     $anaconda_root/lib
 setenv ANACONDA_INCLUDE $anaconda_root/include
+
+# ====================================================================
