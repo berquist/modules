@@ -1,21 +1,6 @@
 #%Module1.0
 
 # ======================================================================
-#  Load useful procedures and variables to be using in this modulefile 
-# ======================================================================
-
-# This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
-source  $env(MODULEPROCS)
-
-if [ check_not_in_queue ] {
-    warning  {
-        Q-Chem is being loaded outside of job execution environment. 
-        Please use batch queue to run Q-Chem jobs.
-        No $LOCAL scratch directory set. 
-    }
-}
-
-# ======================================================================
 # Useful Local Variables
 # ======================================================================
 
@@ -37,16 +22,12 @@ module-whatis "Q-Chem, direct from the Trac SVN trunk!"
 
 conflict qchem
 
-# module load intel/2015.1.133
-# module load mkl/2015.1.133/icc-st
-
 set root $::env(apps)/$modfile
 
-setenv QCSCRATCH     $::env(LOCAL)/qchem
+setenv QCSCRATCH     $::env(HOME)/scratch/qchem
+setenv QCLOCALSCR    $::env(LOCAL)
 setenv QC            $root
-# setenv QCAUX         /home/dlambrecht/software/qcaux4
 setenv QCAUX         $root/../qcaux
-# setenv QC_EXT_LIBS   /home/dlambrecht/software/lib/qc_ext_libs
 setenv QC_EXT_LIBS   $root/../qc_ext_libs
 setenv QCREF         $root/../qcref
 setenv QCPLATFORM    LINUX_Ix86_64

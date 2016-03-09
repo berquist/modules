@@ -1,5 +1,11 @@
 #%Module1.0
 
+# ----------------------------------------------------------------------
+# This is a template file for FRANK modules. Keep what is applicable
+# for specializations of module you are writing, almost anything here
+# is optional
+# ----------------------------------------------------------------------
+
 # ======================================================================
 # Useful Local Variables
 # ======================================================================
@@ -13,12 +19,6 @@ set modfile [ module-info name ]
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 set ver $modfile_base
-
-# ----------------------------------------------------------------------
-# This is a template file for FRANK modules. Keep what is applicable
-# for specializations of module you are writing, almost anything here
-# is optional
-# ----------------------------------------------------------------------
 
 # ======================================================================
 # Documentation
@@ -44,7 +44,7 @@ conflict aces
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(apps)/aces/acesiii
+set root /ihome/dlambrecht/erb74/opt/apps/aces/acesiii
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
