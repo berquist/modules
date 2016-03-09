@@ -37,6 +37,7 @@ module-whatis "CFOUR, version $ver"
 # if the directory name of a collection of modules is specified
 # then conflict with any one in that collection
 conflict cfour
+# prereq intel
 
 # ====================================================================
 # Local settings
