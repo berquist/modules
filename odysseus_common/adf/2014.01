@@ -44,7 +44,8 @@ conflict adf
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(apps)/$modfile
+# set root $::env(apps)/$modfile
+set root /home/eric/opt/apps/adf/2014.01
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
