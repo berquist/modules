@@ -18,7 +18,7 @@ set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem, group Git development version."
+module-whatis "Q-Chem, latest Git/SVN trunk, compiled with Intel/MKL."
 
 # ====================================================================
 # Dependencies
