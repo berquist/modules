@@ -18,20 +18,16 @@ set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem, direct from the Trac SVN trunk! (rxxxxx)"
+module-whatis "Q-Chem, direct from the Trac SVN trunk!"
 
 conflict qchem
 
-module load intel/2015.1.133
-module load mkl/2015.1.133/icc-st
-
 set root $::env(apps)/$modfile
 
-setenv QCSCRATCH     $::env(LOCAL)
+setenv QCSCRATCH     $::env(HOME)/scratch/qchem
+setenv QCLOCALSCR    $::env(LOCAL)
 setenv QC            $root
-# setenv QCAUX         /ihome/dlambrecht/software/qcaux4
 setenv QCAUX         $root/../qcaux
-# setenv QC_EXT_LIBS   /ihome/dlambrecht/software/lib/qc_ext_libs
 setenv QC_EXT_LIBS   $root/../qc_ext_libs
 setenv QCREF         $root/../qcref
 setenv QCPLATFORM    LINUX_Ix86_64

@@ -1,21 +1,6 @@
 #%Module1.0
 
 # ======================================================================
-#  Load useful procedures and variables to be using in this modulefile 
-# ======================================================================
-
-# This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
-source  $env(MODULEPROCS)
-
-if [ check_not_in_queue ] {
-    warning  {
-        Q-Chem is being loaded outside of job execution environment. 
-        Please use batch queue to run Q-Chem jobs.
-        No $LOCAL scratch directory set. 
-    }
-}
-
-# ======================================================================
 # Useful Local Variables
 # ======================================================================
 

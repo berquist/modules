@@ -12,36 +12,28 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-#set ver $modfile_base
+set ver 4.3
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem, direct from the Trac SVN trunk! (rxxxxx)"
+module-whatis "Q-Chem, version $ver"
 
 conflict qchem
 
-module load intel/2015.1.133
-module load mkl/2015.1.133/icc-st
+set root /opt/sam/qchem/4.3
 
-set root $::env(apps)/$modfile
-
-setenv QCSCRATCH     $::env(LOCAL)
 setenv QC            $root
-# setenv QCAUX         /ihome/dlambrecht/software/qcaux4
-setenv QCAUX         $root/../qcaux
-# setenv QC_EXT_LIBS   /ihome/dlambrecht/software/lib/qc_ext_libs
-setenv QC_EXT_LIBS   $root/../qc_ext_libs
-setenv QCREF         $root/../qcref
+setenv QCPROG        $root/exe/qcprog.exe
+setenv QCPROG_S      $root/exe/qcprog.exe_s
+setenv QCAUX         $root/qcaux
+# setenv QCSCRATCH     $::env(HOME)/scratch/qchem
+setenv QCSCRATCH     /ihome/qchem/$::env(USER)
+setenv QCLOCALSCR    $::env(LOCAL)
 setenv QCPLATFORM    LINUX_Ix86_64
+setenv QCRSH         ssh
+setenv QCMPI         mpich
 
-prepend-path PATH  $root/bin
-
-set svnroot https://jubilee.q-chem.com/svnroot
-setenv SVNROOT  $svnroot
-setenv QCSVN    $svnroot/qchem
-setenv QCREFSVN $svnroot/qchem_dailyref
-setenv QCAUXSVN $svnroot/qcaux
-setenv QCMANUAL $svnroot/qchem_manual
-setenv SVN_EDITOR emacs
+prepend-path PATH    $root/bin
+prepend-path PATH    $root/exe
