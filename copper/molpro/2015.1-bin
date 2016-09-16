@@ -1,0 +1,40 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Molpro Quantum Chemistry Package, version $ver"
+
+# ====================================================================
+# Dependencies
+# ====================================================================
+
+conflict molpro
+
+# ====================================================================
+# Local settings
+# ====================================================================
+
+# this is only sets a variable to be used in this modulefile
+set root $::env(apps)/$modfile
+
+# ====================================================================
+# Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
+# ====================================================================
+
+setenv MOLPRO_ROOT $root
+# setenv MOLPRO_KEY {id=pitt,date=:2013/01/01,version=:2012,mpp=32767,modules=mpp,password=eHDXUB5WK6eJ3Cm8&69Jf1bqi1P3TfBxt}
+# setenv MOLPRO_KEY {id=pitt,date=:2038/01/17,version=:2012,mpp=32767,modules=mpp,password=HN8h7Fcxrue2pBdq&pB2PO4mJw5Am0XGC}
+# setenv MOLPRO_KEY {id=cfopitt,date=:2115/04/08,version=:2012,mpp=32767,modules=mpp,password=5Vjgg8IxqKnHHdOL&I4JgIjAA4uYCdmuV}
+prepend-path PATH $root/bin
+# setenv TMPDIR $::env(scratch)/molpro

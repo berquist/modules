@@ -1,4 +1,4 @@
-#%Module
+#%Module1.0
 
 # ======================================================================
 # Useful Local Variables
@@ -12,35 +12,36 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver $modfile_base
+# set ver xxx
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "ACML, AMD Core Math Library, version $ver, to use with GNU compilers, 4-byte integers, serial."
+module-whatis "Q-Chem, latest SVN/branches/libresponse, compiled with GCC/MKL."
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-# module commands
-conflict acml
+conflict qchem
 
-# ====================================================================
-# Local settings
-# ====================================================================
+set root $::env(apps)/$modfile
 
-set root $::env(apps)/acml/6.1.0.31/gfortran64
+setenv QCSCRATCH   $::env(SCRATCH)/qchem
+setenv QC          $root
+setenv QCAUX       $root/../qcaux
+setenv QC_EXT_LIBS $root/../qc_ext_libs
+setenv QCREF       $root/../qcref
+setenv QCPLATFORM  LINUX_Ix86_64
+setenv QCRSH       ssh
 
-setenv ACML_ROOT $root
-prepend-path LD_LIBRARY_PATH   $root/lib
-prepend-path CMAKE_PREFIX_PATH $root
-prepend-path ACML_SCRIPT_PATH  $root/lib/resources
+prepend-path PATH  $root/bin
 
-# ====================================================================
-# Compiler wrapper modifications
-# ====================================================================
-
-prepend-path -d " " SAMWRAP_FLAGS        "-I$root/include"
-prepend-path -d " " SAMWRAP_LDFLAGS      "-L$root/lib -lacml"
+set svnroot https://jubilee.q-chem.com/svnroot
+setenv SVNROOT  $svnroot
+setenv QCSVN    $svnroot/qchem
+setenv QCREFSVN $svnroot/qchem_dailyref
+setenv QCAUXSVN $svnroot/qcaux
+setenv QCMANUAL $svnroot/qchem_manual
+setenv SVN_EDITOR emacs

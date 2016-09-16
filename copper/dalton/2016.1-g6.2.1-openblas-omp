@@ -1,4 +1,4 @@
-#%Module
+#%Module1.0
 
 # ======================================================================
 # Useful Local Variables
@@ -12,35 +12,27 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver $modfile_base
+set ver 2016.0
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "ACML, AMD Core Math Library, version $ver, to use with GNU compilers, 4-byte integers, multi-threaded (OpenMPI)."
+module-whatis "DALTON, an overly-complicated high-level quantum chemistry package"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-# module commands
-conflict acml
+conflict dalton
 
-# ====================================================================
-# Local settings
-# ====================================================================
+# built with:
+# module purge
 
-set root $::env(apps)/acml/6.1.0.31/gfortran64_mp
+set root $::env(apps)/$modfile
 
-setenv ACML_ROOT $root
-prepend-path LD_LIBRARY_PATH   $root/lib
-prepend-path CMAKE_PREFIX_PATH $root
-prepend-path ACML_SCRIPT_PATH  $root/lib/resources
+setenv DALTON_ROOT $root/dalton
+prepend-path PATH $root/dalton
 
-# ====================================================================
-# Compiler wrapper modifications
-# ====================================================================
-
-prepend-path -d " " SAMWRAP_FLAGS        "-I$root/include"
-prepend-path -d " " SAMWRAP_LDFLAGS      "-L$root/lib -lacml_mp"
+setenv DALTON_TMPDIR $::env(SCRATCH)
+setenv CTEST_MAKE_NUM_PROCS 4
