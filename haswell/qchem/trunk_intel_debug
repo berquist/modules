@@ -31,6 +31,9 @@ setenv QCAUX         $root/../qcaux
 setenv QC_EXT_LIBS   $root/../qc_ext_libs
 setenv QCREF         $root/../qcref
 setenv QCPLATFORM    LINUX_Ix86_64
+setenv QCPLATFORM    LINUX_Ix86_64
+setenv QCRSH         ssh
+setenv QCMPI         openmpi
 
 prepend-path PATH  $root/bin
 
