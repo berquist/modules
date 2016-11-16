@@ -4,9 +4,6 @@
 #  Load useful procedures and variables to be using in this modulefile 
 # ======================================================================
 
-# This environment variable is defined in the global rc file ($MODULESHOME/etc/rc).
-source  $env(MODULEPROCS)
-
 # ======================================================================
 # Useful Local Variables
 # ======================================================================
