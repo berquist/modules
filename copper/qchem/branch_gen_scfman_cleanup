@@ -18,7 +18,7 @@ set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 # Documentation
 # ======================================================================
 
-module-whatis "Q-Chem, latest SVN/branches/libresponse, compiled with GCC/MKL."
+module-whatis "Q-Chem, latest SVN/branches/gen_scfman_cleanup, compiled with GCC/OpenBLAS."
 
 # ====================================================================
 # Dependencies
@@ -26,13 +26,13 @@ module-whatis "Q-Chem, latest SVN/branches/libresponse, compiled with GCC/MKL."
 
 conflict qchem
 
-set root $::env(apps)/$modfile
+set root $::env(apps_ext)/$modfile
 
-setenv QCSCRATCH   $::env(SCRATCH)/qchem
+setenv QCSCRATCH   $::env(scratch)/qchem
 setenv QC          $root
-setenv QCAUX       $root/../qcaux
-setenv QC_EXT_LIBS $root/../qc_ext_libs
-setenv QCREF       $root/../qcref
+setenv QCAUX       $::env(apps)/qchem/qcaux
+setenv QC_EXT_LIBS $::env(apps)/qchem/qc_ext_libs
+setenv QCREF       $::env(apps)/qchem/qcref
 setenv QCPLATFORM  LINUX_Ix86_64
 setenv QCRSH       ssh
 

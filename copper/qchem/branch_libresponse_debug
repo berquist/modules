@@ -18,8 +18,7 @@ set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
 # Documentation
 # ======================================================================
 
-# svn co https://jubilee.q-chem.com/svnroot/qchem/branches/ccman2@20977 qchem
-module-whatis "Q-Chem, ccman2@20977 for dumping MO {ia} integrals, compiled with Intel/MKL."
+module-whatis "Q-Chem, latest SVN/branches/libresponse, compiled with GCC/OpenBLAS."
 
 # ====================================================================
 # Dependencies
