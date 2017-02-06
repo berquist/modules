@@ -33,6 +33,7 @@ setenv QC          $root
 setenv QCAUX       $root/../qcaux
 setenv QC_EXT_LIBS $root/../qc_ext_libs
 setenv QCREF       $root/../qcref
+setenv QCEXAMPLE   $::env(apps)/qchem/qcexample
 setenv QCPLATFORM  LINUX_Ix86_64
 setenv QCRSH       ssh
 
