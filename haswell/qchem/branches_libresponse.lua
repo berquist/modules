@@ -1,9 +1,9 @@
-whatis("Q-Chem, personal branch for libresponse development")
+whatis("Q-Chem, copy of $QCSVN/branches/libresponse")
 
 conflict("qchem")
 
 local apps_root = "/ihome/dlambrecht/erb74/opt/apps/"
-local package_root = pathJoin(apps_root, "qchem/qchem_branches_libresponse")
+local package_root = pathJoin(apps_root, "qchem/branches_libresponse")
 
 setenv("QCSCRATCH", pathJoin(os.getenv("HOME"), "scratch/qchem"))
 setenv("QCLOCALSCR", os.getenv("LOCAL"))
