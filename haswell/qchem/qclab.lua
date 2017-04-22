@@ -1,9 +1,9 @@
-whatis("Q-Chem, copy of $QCSVN/branches/libresponse")
+whatis("Q-Chem")
 
 conflict("qchem")
 
 local apps_root = "/ihome/dlambrecht/erb74/opt/apps/"
-local package_root = pathJoin(apps_root, "qchem/branches_libresponse")
+local package_root = pathJoin(apps_root, "qchem/qclab")
 
 if (os.getenv("SLURM_SCRATCH") == nil) then
     setenv("QCLOCALSCR", "/tmp")
@@ -24,8 +24,12 @@ prepend_path("PATH", pathJoin(package_root, "bin"))
 local svn_root = "https://jubilee.q-chem.com/svnroot"
 
 setenv("SVNROOT", svn_root)
-setenv("QCSVN", pathJoin(svn_root, "qchem"))
-setenv("QCREFSVN", pathJoin(svn_root, "qchem_dailyref"))
-setenv("QCAUXSVN", pathJoin(svn_root, "qcaux"))
-setenv("QCMANUAL", pathJoin(svn_root, "qchem_manual"))
+-- setenv("QCSVN", pathJoin(svn_root, "qchem"))
+-- setenv("QCREFSVN", pathJoin(svn_root, "qchem_dailyref"))
+-- setenv("QCAUXSVN", pathJoin(svn_root, "qcaux"))
+-- setenv("QCMANUAL", pathJoin(svn_root, "qchem_manual"))
+setenv("QCSVN", svn_root .. "/qchem")
+setenv("QCREFSVN", svn_root .. "/qchem_dailyref")
+setenv("QCAUXSVN", svn_root .. "/qcaux")
+setenv("QCMANUAL", svn_root .. "/qchem_manual")
 setenv("SVN_EDITOR", "emacs")

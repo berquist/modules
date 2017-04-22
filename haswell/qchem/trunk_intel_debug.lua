@@ -5,8 +5,13 @@ conflict("qchem")
 local apps_root = "/ihome/dlambrecht/erb74/opt/apps/"
 local package_root = pathJoin(apps_root, "qchem/trunk_intel_debug")
 
+if (os.getenv("SLURM_SCRATCH") == nil) then
+    setenv("QCLOCALSCR", "/tmp")
+else
+    setenv("QCLOCALSCR", os.getenv("SLURM_SCRATCH"))
+end
+
 setenv("QCSCRATCH", pathJoin(os.getenv("HOME"), "scratch/qchem"))
-setenv("QCLOCALSCR", os.getenv("LOCAL"))
 setenv("QC", package_root)
 setenv("QCAUX", pathJoin(package_root, "../qcaux"))
 setenv("QC_EXT_LIBS", pathJoin(package_root, "../qc_ext_libs"))
