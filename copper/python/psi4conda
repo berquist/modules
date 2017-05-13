@@ -12,7 +12,7 @@
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 2
+set ver 1.1
 
 # ======================================================================
 # Documentation
@@ -24,8 +24,7 @@ module-whatis "Anaconda Python Distribution. http://continuum.io"
 # Dependencies
 # ====================================================================
 
-# live dangerously!
-# conflict python
+conflict python
 conflict psi4
 
 # ====================================================================
@@ -33,7 +32,7 @@ conflict psi4
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set anaconda_root $::env(apps)/$modfile
+set anaconda_root $env(apps_ext)/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
@@ -48,6 +47,7 @@ setenv ANACONDA_BIN     $anaconda_root/bin
 setenv ANACONDA_LIB     $anaconda_root/lib
 setenv ANACONDA_INCLUDE $anaconda_root/include
 
+# unsetenv PSIDATADIR
 setenv PSI_SCRATCH $env(scratch)
 
-# ======================================================================
+# ====================================================================
