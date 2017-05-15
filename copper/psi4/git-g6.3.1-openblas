@@ -1,11 +1,5 @@
 #%Module1.0
 
-# ----------------------------------------------------------------------
-# This is a template file for FRANK modules. Keep what is applicable
-# for specializations of module you are writing, almost anything here
-# is optional
-# ----------------------------------------------------------------------
-
 # ======================================================================
 # Useful Local Variables
 # ======================================================================
@@ -18,37 +12,36 @@
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-#set ver $modfile_base
+set ver 2
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "GAMESS"
+module-whatis "Anaconda Python Distribution. http://continuum.io"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-# module commands
-
-# conflicting modules
-# if the directory name of a collection of modules is specified
-# then conflict with any one in that collection
-
-conflict gamess
+# live dangerously!
+# conflict python
+conflict psi4
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(apps)/$modfile
+set anaconda_root $::env(apps)/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv GAMESS_HOME $root
-prepend-path PATH $root/bin
-setenv SCR $::env(SCRATCH)/gamess
+prepend-path PATH       $anaconda_root/bin
+prepend-path PYTHONPATH $anaconda_root/lib
+
+setenv PSI_SCRATCH $env(scratch)
+
+# ====================================================================
