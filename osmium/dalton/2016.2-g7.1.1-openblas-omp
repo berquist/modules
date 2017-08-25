@@ -12,7 +12,7 @@
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 2016.0
+set ver 2016.2
 
 # ======================================================================
 # Documentation
@@ -28,8 +28,8 @@ conflict dalton
 
 set root $::env(apps)/$modfile
 
-setenv DALTON_ROOT $root
-prepend-path PATH $root
+setenv DALTON_ROOT $root/dalton
+prepend-path PATH $root/dalton
 
 setenv DALTON_TMPDIR $::env(SCRATCH)
 setenv CTEST_MAKE_NUM_PROCS 4
