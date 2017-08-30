@@ -1,0 +1,47 @@
+#%Module1.0
+
+# ======================================================================
+# Useful Local Variables
+# ======================================================================
+
+#  $modfile      : This module's file path relative to modulefiles root
+#  $submods      : List of submodules
+#  $modfile_base : This module's plain file name
+#  $ver          : Module version (same as $modfile_base for now)
+
+set modfile [ module-info name ]
+set submods [ split "$modfile" / ]
+set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
+#set ver $modfile_base
+
+# ======================================================================
+# Documentation
+# ======================================================================
+
+module-whatis "Q-Chem, direct from the Trac SVN trunk! (r25562)"
+
+conflict qchem
+
+module load intel/2015.1.133
+module load mkl/2015.1.133/icc-st
+
+set root /ihome/dlambrecht/erb74/opt/apps/$modfile
+
+setenv QCSCRATCH     $::env(LOCAL)
+setenv QC            $root
+# setenv QCAUX         /ihome/dlambrecht/software/qcaux4
+setenv QCAUX         $root/../qcaux
+# setenv QC_EXT_LIBS   /ihome/dlambrecht/software/lib/qc_ext_libs
+setenv QC_EXT_LIBS   $root/../qc_ext_libs
+setenv QCREF         $root/../qcref
+setenv QCPLATFORM    LINUX_Ix86_64
+
+prepend-path PATH  $root/bin
+
+set svnroot https://jubilee.q-chem.com/svnroot
+setenv SVNROOT  $svnroot
+setenv QCSVN    $svnroot/qchem
+setenv QCREFSVN $svnroot/qchem_dailyref
+setenv QCAUXSVN $svnroot/qcaux
+setenv QCMANUAL $svnroot/qchem_manual
+setenv SVN_EDITOR emacs
