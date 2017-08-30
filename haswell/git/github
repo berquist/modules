@@ -42,7 +42,7 @@ conflict git
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $env(apps)/$modfile
+set root /ihome/dlambrecht/erb74/opt/apps/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
