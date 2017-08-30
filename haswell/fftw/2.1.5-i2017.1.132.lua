@@ -3,7 +3,7 @@ whatis("FFTW, the fastest Fourier transform in the West")
 conflict("fftw")
 
 local apps_root = "/ihome/dlambrecht/erb74/opt/apps/"
-local package_root = apps_root .. "fftw/2.1.5-i2015.3.187-qchem"
+local package_root = apps_root .. "fftw/2.1.5-i2017.1.132-qchem"
 
 setenv("FFTW_ROOT", package_root)
 setenv("FFTW_DIR", package_root)
