@@ -3,7 +3,7 @@ whatis("Q-Chem, copy of $QCSVN/branches/libresponse")
 conflict("qchem")
 
 local apps_root = "/ihome/dlambrecht/erb74/opt/apps/"
-local package_root = pathJoin(apps_root, "qchem/branches_libresponse")
+local package_root = pathJoin(apps_root, "qchem/haswell/branches_libresponse")
 
 if (os.getenv("SLURM_SCRATCH") == nil) then
     setenv("QCLOCALSCR", "/tmp")
@@ -13,9 +13,9 @@ end
 
 setenv("QCSCRATCH", pathJoin(os.getenv("HOME"), "scratch/qchem"))
 setenv("QC", package_root)
-setenv("QCAUX", pathJoin(package_root, "../qcaux"))
-setenv("QC_EXT_LIBS", pathJoin(package_root, "../qc_ext_libs"))
-setenv("QCREF", pathJoin(package_root, "../qcref"))
+setenv("QCAUX", pathJoin(package_root, "../../qcaux"))
+setenv("QC_EXT_LIBS", pathJoin(package_root, "../../qc_ext_libs"))
+setenv("QCREF", pathJoin(package_root, "../../qcref"))
 setenv("QCPLATFORM", "LINUX_Ix86_64")
 setenv("QCRSH", "ssh")
 setenv("QCMPI", "openmpi")

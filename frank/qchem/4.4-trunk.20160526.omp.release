@@ -25,15 +25,13 @@ conflict qchem
 module load intel/2013.0
 module load mkl/2013.0/icc-st
 
-set root /ihome/dlambrecht/erb74/opt/apps/$modfile
+set root /ihome/dlambrecht/erb74/opt/apps/qchem/frank/4.4-trunk.20160526.omp.release
 
 setenv QCSCRATCH     $::env(LOCAL)
 setenv QC            $root
-# setenv QCAUX         /ihome/dlambrecht/software/qcaux4
-setenv QCAUX         $root/../qcaux
-# setenv QC_EXT_LIBS   /ihome/dlambrecht/software/lib/qc_ext_libs
-setenv QC_EXT_LIBS   $root/../qc_ext_libs
-setenv QCREF         $root/../qcref
+setenv QCAUX         $root/../../qcaux
+setenv QC_EXT_LIBS   $root/../../qc_ext_libs
+setenv QCREF         $root/../../qcref
 setenv QCPLATFORM    LINUX_Ix86_64
 
 prepend-path PATH  $root/bin
