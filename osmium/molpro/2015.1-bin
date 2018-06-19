@@ -1,19 +1,8 @@
 #%Module1.0
 
-# ----------------------------------------------------------------------
-# This is a template file for FRANK modules. Keep what is applicable
-# for specializations of module you are writing, almost anything here
-# is optional
-# ----------------------------------------------------------------------
-
 # ======================================================================
 # Useful Local Variables
 # ======================================================================
-
-#  $modfile      : This module's file path relative to modulefiles root
-#  $submods      : List of submodules
-#  $modfile_base : This module's plain file name
-#  $ver          : Module version (same as $modfile_base for now)
 
 set modfile [ module-info name ]
 set submods [ split "$modfile" / ]
@@ -24,18 +13,13 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "The Amber molecular dynamics package (http://ambermd.org)"
+module-whatis "Molpro Quantum Chemistry Package, version $ver"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-# module commands
-
-# conflicting modules
-# if the directory name of a collection of modules is specified
-# then conflict with any one in that collection
-conflict amber
+conflict molpro
 
 # ====================================================================
 # Local settings
@@ -48,16 +32,9 @@ set root $::env(apps)/$modfile
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv AMBERHOME $root
-
+setenv MOLPRO_ROOT $root
+# setenv MOLPRO_KEY {id=pitt,date=:2013/01/01,version=:2012,mpp=32767,modules=mpp,password=eHDXUB5WK6eJ3Cm8&69Jf1bqi1P3TfBxt}
+# setenv MOLPRO_KEY {id=pitt,date=:2038/01/17,version=:2012,mpp=32767,modules=mpp,password=HN8h7Fcxrue2pBdq&pB2PO4mJw5Am0XGC}
+# setenv MOLPRO_KEY {id=cfopitt,date=:2115/04/08,version=:2012,mpp=32767,modules=mpp,password=5Vjgg8IxqKnHHdOL&I4JgIjAA4uYCdmuV}
 prepend-path PATH $root/bin
-append-path LD_LIBRARY_PATH $root/lib
-prepend-path PYTHONPATH $root/lib/python2.7
-
-setenv CUDA_HOME /opt/cuda
-
-setenv GAU_NCPUS 4
-setenv ORC_NCPUS 4
-setenv GMS_NCPUS 4
-
-# ======================================================================
+# setenv TMPDIR $::env(scratch)/molpro

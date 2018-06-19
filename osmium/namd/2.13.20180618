@@ -1,11 +1,5 @@
 #%Module1.0
 
-# ----------------------------------------------------------------------
-# This is a template file for FRANK modules. Keep what is applicable
-# for specializations of module you are writing, almost anything here
-# is optional
-# ----------------------------------------------------------------------
-
 # ======================================================================
 # Useful Local Variables
 # ======================================================================
@@ -18,36 +12,34 @@
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-#set ver $modfile_base
+set ver 2.13.20160618
 
 # ======================================================================
 # Documentation
 # ======================================================================
 
-module-whatis "OpenChemistry, from github."
+module-whatis "NAMD molecular dynamics, version $ver"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-# module commands
-
-# conflicting modules 
-# if the directory name of a collection of modules is specified 
-# then conflict with any one in that collection
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(apps)/build/openchemistry/build_bundle2/prefix
+# set root /opt/sam/namd/2.9/intel12-openmpi
+  set root $::env(QCPROGS)/namd/NAMD_2.9_Linux-x86_64-multicore
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv OPENCHEMISTRY_ROOT $root
-prepend-path PATH         $root/bin
-
-# ======================================================================
+setenv NAMD_ROOT $root
+# prepend-path PATH $root/bin
+prepend-path PATH $root
+prepend-path LD_LIBRARY_PATH $root/lib
+#prepend-path MANPATH $root/share/man
+#prepend-path INFOPATH $root/share/info

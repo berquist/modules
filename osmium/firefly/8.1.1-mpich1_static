@@ -18,7 +18,7 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "PC GAMESS/Firefly v$ver"
+module-whatis "PC GAMESS/Firefly v$ver, statically linked to MPICH1"
 
 # ====================================================================
 # Dependencies
@@ -31,10 +31,11 @@ conflict firefly
 # ====================================================================
 
 # this is only sets a variable to be used in this modulefile
-set root $::env(QCPROGS)/$modfile
+set root $::env(apps)/$modfile
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
+setenv FIREFLY_ROOT $root
 prepend-path PATH $root
