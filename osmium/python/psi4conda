@@ -12,7 +12,7 @@
 set modfile [ module-info name ] 
 set submods [ split "$modfile" / ]  
 set modfile_base [ lindex $submods [ expr [ llength $submods ] - 1 ] ]
-set ver 2
+set ver 3
 
 # ======================================================================
 # Documentation
@@ -48,6 +48,7 @@ setenv ANACONDA_BIN     $anaconda_root/bin
 setenv ANACONDA_LIB     $anaconda_root/lib
 setenv ANACONDA_INCLUDE $anaconda_root/include
 
+unsetenv PSIDATADIR
 setenv PSI_SCRATCH $env(scratch)
 
-# ======================================================================
+# ====================================================================
