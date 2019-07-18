@@ -48,7 +48,7 @@ prepend-path PATH     $anaconda_root/bin
 prepend-path MANPATH  $anaconda_root/share/man
 prepend-path INFOPATH $anaconda_root/share/info
 
-setenv ANACONDA_ROOT    $anaconda_root
+setenv ANACONDA_HOME    $anaconda_root
 setenv ANACONDA_BIN     $anaconda_root/bin
 setenv ANACONDA_LIB     $anaconda_root/lib
 setenv ANACONDA_INCLUDE $anaconda_root/include
