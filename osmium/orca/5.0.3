@@ -1,5 +1,11 @@
 #%Module1.0
 
+# ----------------------------------------------------------------------
+# This is a template file for FRANK modules. Keep what is applicable
+# for specializations of module you are writing, almost anything here
+# is optional
+# ----------------------------------------------------------------------
+
 # ======================================================================
 # Useful Local Variables
 # ======================================================================
@@ -18,25 +24,31 @@ set ver $modfile_base
 # Documentation
 # ======================================================================
 
-module-whatis "Matlab (http://www.mathworks.com/products/matlab/), version $ver"
+module-whatis "http://cec.mpg.de/forum/portal.php"
 
 # ====================================================================
 # Dependencies
 # ====================================================================
 
-conflict MATLAB
+# module commands
+
+
+# conflicting modules
+# if the directory name of a collection of modules is specified
+# then conflict with any one in that collection
+conflict orca
 
 # ====================================================================
 # Local settings
 # ====================================================================
 
+# this is only sets a variable to be used in this modulefile
 set root $::env(apps)/$modfile
+setenv ORCAHOME $root
 
 # ====================================================================
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-prepend-path PATH $root/bin
-append-path LD_LIBRARY_PATH $root/runtime/glnxa64
-append-path LD_LIBRARY_PATH $root/bin/glnxa64
-
+prepend-path PATH $root
+prepend-path LD_LIBRARY_PATH $root
