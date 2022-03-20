@@ -30,9 +30,9 @@ set root $::env(apps)/$modfile
 
 setenv QCSCRATCH   $::env(SCRATCH)/qchem
 setenv QC          $root
-setenv QCAUX       $root/../qcaux
-setenv QC_EXT_LIBS $root/../qc_ext_libs
-setenv QCREF       $root/../qcref
+setenv QCAUX       $root/../../qcaux
+setenv QC_EXT_LIBS $root/../../qc_ext_libs
+setenv QCREF       $root/../../qcref
 setenv QCPLATFORM  LINUX_Ix86_64
 
 prepend-path PATH  $root/bin
