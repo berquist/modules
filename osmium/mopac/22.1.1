@@ -46,7 +46,5 @@ set root $::env(apps)/$modfile
 # Add stuff to PATH, LD_LIBRARY_PATH, MANPATH, etc..
 # ====================================================================
 
-setenv MOPAC_ROOT $root
-setenv MOPAC_LICENSE $root
-prepend-path PATH $root
-prepend-path LD_LIBRARY_PATH $root
+prepend-path PATH $root/bin
+# prepend-path LD_LIBRARY_PATH $root/lib
